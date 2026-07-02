@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vedi Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-primary:#1d1d1d;
+    --font-secondary:#333333;
+    --font-tertiary:#666666;
+    --font-on-dark-primary:#ffffff;
+    --neutral-white:#ffffff;
+    --neutral-charcoal:#1d1d1d;
+    --neutral-snow-light:#f5f5f5;
+    --neutral-snow-dark:#e8e8e8;
+    --border-color:#e5e7eb;
+    --accent-green-400:#5c853b;
+    --accent-teal-50:#e2efef;
+    --accent-teal-100:#c5dfdf;
+    --accent-teal-400:#3d9595;
+    --accent-rose-50:#f7e6e9;
+    --accent-rose-100:#f0cdd4;
+    --accent-rose-400:#cc576e;
+    --accent-olive-50:#f3f1e0;
+    --accent-olive-100:#e7e3c0;
+    --accent-olive-400:#afa32d;
+    --accent-yellow-50:#fef6dd;
+    --accent-yellow-100:#feecba;
+    --accent-yellow-400:#fac119;
+
+    --heading-font: 'Khand', sans-serif;
+    --body-font: Arial, "Arial MT", "Helvetica Neue", Helvetica, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--body-font);
+    color:var(--font-primary);
+    background:var(--neutral-white);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%;}
+  a{text-decoration:none;color:inherit;}
+  p{margin:0;}
+  .capitalize{text-transform:capitalize;}
+
+  h1,h2,h3,h4,h5,h6,
+  .heading{
+    font-family:var(--heading-font);
+    font-weight:500;
+    margin:0;
+  }
+
+  .wrap{
+    max-width:1440px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  /* ============ NAVBAR ============ */
+  .navbar{
+    background:var(--neutral-white);
+    border-bottom:1px solid var(--neutral-snow-dark);
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 40px;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .navbar .logo{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:22px;
+    color:var(--accent-green-400);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    height:80px;
+  }
+  .nav-item{
+    height:80px;
+    display:flex;
+    align-items:center;
+    padding:0 16px;
+    font-size:16px;
+    letter-spacing:-0.18px;
+    font-weight:500;
+    color:var(--font-primary);
+    cursor:pointer;
+  }
+  .nav-item.active{
+    border-bottom:2px solid var(--neutral-charcoal);
+  }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .prakriti-pill{
+    background:linear-gradient(90deg,#5c853b,#3d9595);
+    color:#fff;
+    border-radius:32px;
+    padding:8px 14px;
+    font-size:12px;
+    letter-spacing:-0.12px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+    white-space:nowrap;
+  }
+  .icon-btn{
+    width:24px;
+    height:24px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  .icon-btn img{width:24px;height:24px;}
+  .logo{ display:flex; align-items:center; gap:6px; }
+
+  /* ============ HERO HEADER ============ */
+  .hero-header{
+    position:relative;
+    margin:40px 60px 0;
+    border-radius:16px;
+    overflow:hidden;
+    height:458px;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+  }
+  .hero-header::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(16,16,16,0) 40%, rgba(0,0,0,0.55) 100%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    padding:0 100px 55px;
+    max-width:680px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .badge-row{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .badge{
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:-0.16px;
+    white-space:nowrap;
+  }
+  .badge.on-dark{
+    background:rgba(255,255,255,0.2);
+    color:#fff;
+  }
+  .badge.small{
+    font-size:12px;
+    letter-spacing:-0.12px;
+  }
+  .hero-title{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:52px;
+    line-height:1;
+    color:#fff;
+    letter-spacing:-1.04px;
+  }
+  .meta-row{
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .meta-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+    letter-spacing:-0.16px;
+    font-weight:500;
+    color:var(--font-on-dark-primary);
+  }
+  .meta-item.dark{ color:var(--font-tertiary); }
+  .meta-item img{width:16px;height:16px;flex-shrink:0;}
+
+  /* ============ LATEST + TOP READS ============ */
+  .split-section{
+    display:flex;
+    gap:36px;
+    padding:56px 60px 0;
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .col-latest{
+    flex:1 1 640px;
+    min-width:320px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .col-topreads{
+    flex:1 1 620px;
+    min-width:320px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .section-heading{
+    font-family:var(--heading-font);
+    font-weight:500;
+    font-size:32px;
+    letter-spacing:-0.2px;
+    line-height:38px;
+    text-transform:capitalize;
+    color:var(--font-primary);
+  }
+
+  .hero-card{
+    background:#fff;
+    border:1px solid var(--border-color);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .hero-card .image{
+    width:100%;
+    height:300px;
+    overflow:hidden;
+  }
+  .hero-card .image img{width:100%;height:100%;object-fit:cover;}
+  .hero-card .text{
+    padding:16px 32px 24px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .cat-badge{
+    background:var(--neutral-snow-light);
+    border:1px solid var(--neutral-snow-dark);
+    color:var(--font-secondary);
+  }
+  .intent-badge{
+    background:var(--accent-olive-50);
+    border:1px solid var(--accent-olive-100);
+    color:var(--accent-olive-400);
+  }
+  .intent-badge.rose{ background:var(--accent-rose-50); border-color:var(--accent-rose-100); color:var(--accent-rose-400); }
+  .intent-badge.teal{ background:var(--accent-teal-50); border-color:var(--accent-teal-100); color:var(--accent-teal-400); }
+  .intent-badge.yellow{ background:var(--accent-yellow-50); border-color:var(--accent-yellow-100); color:var(--accent-yellow-400); }
+
+  .heading-3{
+    font-family:var(--heading-font);
+    font-weight:500;
+    font-size:24px;
+    line-height:30px;
+    letter-spacing:-0.15px;
+    color:var(--font-primary);
+  }
+  .heading-6{
+    font-family:var(--heading-font);
+    font-weight:500;
+    font-size:20px;
+    line-height:24px;
+    color:var(--font-primary);
+  }
+  .body-3{
+    font-family:var(--body-font);
+    font-size:14px;
+    line-height:20px;
+    color:var(--font-secondary);
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  .topread-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .topread-item{
+    display:flex;
+    gap:17px;
+    align-items:flex-start;
+  }
+  .topread-item .thumb{
+    width:192px;
+    height:192px;
+    flex:0 0 192px;
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .topread-item .thumb img{width:100%;height:100%;object-fit:cover;}
+  .topread-item .body{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1;
+    min-width:0;
+  }
+  .small-meta{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    font-size:12px;
+    color:#6a7282;
+    font-weight:500;
+  }
+
+  /* ============ CATEGORY FILTER ============ */
+  .category-filter{
+    background:var(--neutral-snow-light);
+    border-top:1px solid var(--border-color);
+    border-bottom:1px solid var(--border-color);
+    padding:24px 60px;
+    margin-top:64px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .filter-pill{
+    padding:10px 24px;
+    border-radius:100px;
+    border:1.5px solid var(--neutral-snow-dark);
+    font-size:16px;
+    letter-spacing:-0.18px;
+    font-weight:500;
+    background:#fff;
+    color:#000;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .filter-pill.active{
+    background:var(--neutral-charcoal);
+    color:#fff;
+    border-color:var(--neutral-charcoal);
+  }
+
+  /* ============ CARD GRID ============ */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+    padding:40px 60px 60px;
+    max-width:1440px;
+    margin:0 auto;
+  }
+  .blog-card{
+    background:#fff;
+    border:1px solid var(--border-color);
+    border-radius:16px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .blog-card .image{
+    width:100%;
+    height:264px;
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .blog-card .image img{width:100%;height:100%;object-fit:cover;}
+  .blog-card .date{
+    font-size:14px;
+    color:#666;
+    font-weight:500;
+  }
+
+  /* ============ PAGINATION ============ */
+  .pagination{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    padding:20px 0 60px;
+  }
+  .page-btn{
+    width:56px;
+    height:56px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:500;
+    color:#000;
+    cursor:pointer;
+  }
+  .page-btn.active{
+    background:var(--accent-green-400);
+    color:#fff;
+  }
+  .page-arrow{
+    width:56px;
+    height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .page-arrow img{width:24px;height:24px;}
+
+  /* ============ FOOTER ============ */
+  .footer{
+    background:linear-gradient(111deg, #164903 6%, #5a8843 125%);
+    padding:40px 60px;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    gap:60px;
+    flex-wrap:wrap;
+  }
+  .footer-left{
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+    max-width:452px;
+    justify-content:center;
+  }
+  .footer-title{
+    font-family:var(--body-font);
+    font-weight:300;
+    font-size:32px;
+    line-height:48px;
+    letter-spacing:-0.3px;
+    color:#fff;
+  }
+  .footer-title b{font-weight:500;}
+  .newsletter{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .newsletter p{ font-size:14px; }
+  .signup-row{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .email-input{
+    border:1px solid #fff;
+    border-radius:28px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    padding:0 19px;
+    flex:1;
+    max-width:306px;
+  }
+  .email-input span{
+    color:var(--neutral-snow-dark);
+    font-size:12px;
+  }
+  .subscribe-btn{
+    background:#fff;
+    color:var(--accent-green-400);
+    border-radius:100px;
+    padding:10px 16px;
+    font-size:16px;
+    font-weight:500;
+    letter-spacing:-0.18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    flex:1;
+    max-width:150px;
+  }
+  .footer-bottom-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .social{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .social b{
+    font-size:18px;
+    font-weight:700;
+  }
+  .social-icons{
+    display:flex;
+    gap:8px;
+  }
+  .social-icons img{width:24px;height:24px;}
+  .copyright{
+    font-size:10px;
+    color:var(--neutral-snow-dark);
+  }
+  .nav-columns{
+    display:flex;
+    gap:60px;
+    flex-wrap:wrap;
+  }
+  .nav-col{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .nav-col b{
+    font-family:var(--body-font);
+    font-weight:700;
+    font-size:18px;
+    margin-bottom:2px;
+  }
+  .nav-col span{
+    font-size:14px;
+    font-weight:500;
+  }
+  .footer-divider{
+    height:1px;
+    background:rgba(255,255,255,0.25);
+    width:100%;
+  }
+
+  @media (max-width: 1100px){
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links{display:none;}
+  }
+  @media (max-width: 700px){
+    .card-grid{grid-template-columns:1fr;padding-left:20px;padding-right:20px;}
+    .hero-header{margin:20px 20px 0;height:340px;}
+    .hero-content{padding:0 24px 30px;}
+    .hero-title{font-size:34px;}
+    .split-section{padding:36px 20px 0;flex-direction:column;}
+    .category-filter{padding:20px;}
+    .footer{padding:30px 20px;}
+    .topread-item{flex-direction:column;}
+    .topread-item .thumb{width:100%;flex-basis:auto;height:220px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar">
+  <div class="logo">
+    <img src="https://www.figma.com/api/mcp/asset/23befae4-441c-4cac-ada4-6edc54438c89" alt="" style="height:36px;width:auto;">
+    <img src="https://www.figma.com/api/mcp/asset/ba6da7c7-6de8-4c08-8350-dceb72baa860" alt="Vedi Herbals" style="height:16px;width:auto;">
+  </div>
+  <nav class="nav-links">
+    <div class="nav-item">Shop all</div>
+    <div class="nav-item">Vedi wellness</div>
+    <div class="nav-item active">Blogs</div>
+    <div class="nav-item">Doctor consultation</div>
+    <div class="nav-item">Explore Vedi</div>
+  </nav>
+  <div class="nav-right">
+    <div class="prakriti-pill">
+      <img src="https://www.figma.com/api/mcp/asset/e09ddc48-9af2-46c0-bf26-eeb4364a04ba" alt="" style="width:18px;height:17px;">
+      Know your prakriti
+      <img src="https://www.figma.com/api/mcp/asset/27eaa1e0-3018-4563-8dc6-d4db12691ef0" alt="" style="width:10px;height:10px;transform:rotate(-90deg);">
+    </div>
+    <span class="icon-btn" title="Account">
+      <img src="https://www.figma.com/api/mcp/asset/17a6cecc-8ede-4c4c-a59c-5a59c03e324a" alt="Account">
+    </span>
+    <span class="icon-btn" title="Search">
+      <img src="https://www.figma.com/api/mcp/asset/3512f57e-6f14-4b35-988b-06fe679b0ce6" alt="Search">
+    </span>
+    <span class="icon-btn" title="Cart">
+      <img src="https://www.figma.com/api/mcp/asset/7cd19220-518b-4280-91ad-5b479e30c811" alt="Cart">
+    </span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ HERO HEADER ============ -->
+  <section class="hero-header" style="background-image:url('https://www.figma.com/api/mcp/asset/9713d238-c496-459b-b5ce-bd3e57254bb8');">
+    <div class="hero-content">
+      <div class="badge-row">
+        <span class="badge on-dark">Herbs &amp; Ingredients</span>
+        <span class="badge on-dark">Heal</span>
+      </div>
+      <h1 class="hero-title">What Is the Difference Between Bhang and Ganja?</h1>
+      <div class="meta-row">
+        <span class="meta-item">
+          <img src="https://www.figma.com/api/mcp/asset/5f220955-4e38-469f-be20-a833c2d90f7d" alt="">
+          December 10, 2026
+        </span>
+        <span class="meta-item">
+          <img src="https://www.figma.com/api/mcp/asset/f22e43f2-76e0-4397-8ea4-5eb4e0a1e303" alt="">
+          Prashik Wasu
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE LATEST + TOP READS ============ -->
+  <section class="split-section">
+
+    <!-- Left: The Latest -->
+    <div class="col-latest">
+      <h2 class="section-heading">The Latest</h2>
+      <article class="hero-card">
+        <div class="image">
+          <img src="https://www.figma.com/api/mcp/asset/d9e27bad-7967-4dbb-b113-10514330149c" alt="Cannabis leaves">
+        </div>
+        <div class="text">
+          <div class="badge-row">
+            <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+            <span class="badge small intent-badge">Heal</span>
+          </div>
+          <h3 class="heading-3">Is Cannabis a Drug or Medicine? Understanding the Legal and Scientific Debate</h3>
+          <div class="meta-row">
+            <span class="meta-item dark">
+              <img src="https://www.figma.com/api/mcp/asset/3c28c4c4-f986-4fcc-ac50-d450d6689689" alt="">
+              December 10, 2026
+            </span>
+            <span class="meta-item dark">
+              <img src="https://www.figma.com/api/mcp/asset/f5395469-c117-413f-a9ca-c5fb28dcc5b6" alt="">
+              Prashik Wasu
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Right: Top Reads -->
+    <div class="col-topreads">
+      <h2 class="section-heading">Top Reads</h2>
+      <div class="topread-list">
+
+        <div class="topread-item">
+          <div class="thumb"><img src="https://www.figma.com/api/mcp/asset/c8178fb4-83e4-422a-9ee1-be82ca4419a1" alt=""></div>
+          <div class="body">
+            <div class="badge-row">
+              <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+              <span class="badge small intent-badge">Heal</span>
+            </div>
+            <h3 class="heading-6">The Ancient Wisdom of Turmeric and Ginger</h3>
+            <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+            <div class="small-meta"><span>December 10, 2026</span><span>•</span><span>Prashik Wasu</span></div>
+          </div>
+        </div>
+
+        <div class="topread-item">
+          <div class="thumb"><img src="https://www.figma.com/api/mcp/asset/fbe6b8b2-fb02-4d05-9650-bfa2733a35d2" alt=""></div>
+          <div class="body">
+            <div class="badge-row">
+              <span class="badge small cat-badge">Conditions &amp; Symptoms</span>
+              <span class="badge small intent-badge rose">Prevent</span>
+            </div>
+            <h3 class="heading-6">The Ancient Wisdom of Turmeric and Ginger</h3>
+            <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+            <div class="small-meta"><span>December 10, 2026</span><span>•</span><span>Prashik Wasu</span></div>
+          </div>
+        </div>
+
+        <div class="topread-item">
+          <div class="thumb"><img src="https://www.figma.com/api/mcp/asset/4a6d049d-a46b-4528-900a-5de206111462" alt=""></div>
+          <div class="body">
+            <div class="badge-row">
+              <span class="badge small cat-badge">Lifestyle &amp; Wellness</span>
+              <span class="badge small intent-badge yellow">Enhance</span>
+            </div>
+            <h3 class="heading-6">The Ancient Wisdom of Yoga</h3>
+            <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+            <div class="small-meta"><span>December 10, 2026</span><span>•</span><span>Prashik Wasu</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY FILTER ============ -->
+  <section class="category-filter">
+    <span class="filter-pill active">All</span>
+    <span class="filter-pill">Herbs &amp; Ingredients</span>
+    <span class="filter-pill">Cannabis &amp; Vijaya</span>
+    <span class="filter-pill">Condition &amp; Symptoms</span>
+    <span class="filter-pill">Ayurvedic Therapies</span>
+    <span class="filter-pill">Fundamentals</span>
+    <span class="filter-pill">Lifestyle &amp; Wellness</span>
+  </section>
+
+  <!-- ============ CARD GRID ============ -->
+  <section class="card-grid">
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/398ddf7d-2724-42e7-9214-7b877ec30523" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge teal">Restore</span>
+      </div>
+      <h3 class="heading-6">Panchakarma therapy: detox, rejuvenate, restore balance</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/7697349d-a688-452a-b748-4bd85807a843" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge rose">Prevent</span>
+      </div>
+      <h3 class="heading-6">Ancient healing rituals to cleanse your body and calm your mind</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/58f26d15-b6a2-4a17-8670-abccfb49912a" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge">Heal</span>
+      </div>
+      <h3 class="heading-6">Ayurvedic renewal: purify deeply, heal fully, live freely</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/9d5d6f2a-49e0-4793-a6fb-b17fe6dc8ff2" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Ayurvedic Therapies</span>
+        <span class="badge small intent-badge yellow">Enhance</span>
+      </div>
+      <h3 class="heading-6">Five sacred therapies for total body restoration</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/01476fe1-276b-42d0-a8c3-9ea6ba757f1a" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Lifestyle &amp; Wellness</span>
+        <span class="badge small intent-badge teal">Restore</span>
+      </div>
+      <h3 class="heading-6">Revive your senses with traditional Ayurvedic healing</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/7a0fe9e9-7818-4498-ae4a-7baf33ecc839" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge teal">Restore</span>
+      </div>
+      <h3 class="heading-6">Holistic detox to align your body, mind, and spirit</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/1d6e0e2c-fdaa-4930-9215-97fe14b6faa8" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge teal">Restore</span>
+      </div>
+      <h3 class="heading-6">Transform your wellness with time-honored Panchakarma</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/495cfab2-4c28-47b7-aebc-21e9600ac9c7" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge teal">Restore</span>
+      </div>
+      <h3 class="heading-6">Reclaim your vitality through Ayurveda's deepest healing</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+    <article class="blog-card">
+      <div class="image"><img src="https://www.figma.com/api/mcp/asset/236ddfa4-3db0-496d-86f4-8f21468b419d" alt=""></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small intent-badge teal">Restore</span>
+      </div>
+      <h3 class="heading-6">The Panchakarma journey: five paths to purification</h3>
+      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
+      <span class="date">Dec 10, 2024</span>
+    </article>
+
+  </section>
+
+  <!-- ============ PAGINATION ============ -->
+  <nav class="pagination">
+    <span class="page-arrow">
+      <img src="https://www.figma.com/api/mcp/asset/59aa2285-2ebd-4bd8-b993-40ac855cbbd4" alt="Previous">
+    </span>
+    <span class="page-btn">1</span>
+    <span class="page-btn active">2</span>
+    <span class="page-btn">3</span>
+    <span class="page-btn">4</span>
+    <span class="page-btn">5</span>
+    <span class="page-arrow">
+      <img src="https://www.figma.com/api/mcp/asset/b42c90b1-6b27-4aff-a763-4959619b6085" alt="Next">
+    </span>
+  </nav>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-left">
+      <p class="footer-title">Your journey to <b>holistic healing</b></p>
+
+      <div class="newsletter">
+        <p>Subscribe to our newsletter</p>
+        <div class="signup-row">
+          <div class="email-input"><span>Enter your email</span></div>
+          <div class="subscribe-btn">Subscribe</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="social">
+          <b>Follow us</b>
+          <div class="social-icons">
+            <img src="https://www.figma.com/api/mcp/asset/308d52f4-1cd5-4a38-8ee6-791d434dde7f" alt="Facebook">
+            <img src="https://www.figma.com/api/mcp/asset/6ba8569c-d8bf-40c1-9fb7-98e23e6ddcb2" alt="X">
+            <img src="https://www.figma.com/api/mcp/asset/0dc94fba-36db-49c5-94de-05c2df00025c" alt="YouTube">
+          </div>
+        </div>
+        <p class="copyright">© 2025 Vedi Herbals. All rights reserved.</p>
+      </div>
+    </div>
+
+    <div class="nav-columns">
+      <div class="nav-col">
+        <b>Shop</b>
+        <span>Vedi Remedies</span>
+        <span>Vedi Essentials</span>
+        <span>Heal</span>
+        <span>Prevent</span>
+        <span>Restore</span>
+        <span>Enhance</span>
+      </div>
+      <div class="nav-col">
+        <b>About us</b>
+        <span>Our Story</span>
+        <span>Sustainability</span>
+        <span>Careers</span>
+        <span>Contact Us</span>
+      </div>
+      <div class="nav-col">
+        <b>Policies</b>
+        <span>Shipping</span>
+        <span>Returns</span>
+        <span>Privacy</span>
+      </div>
+      <div class="nav-col">
+        <b>Connect with us</b>
+        <span>Email: support@vediherbals.com</span>
+        <span>Phone: +1 (555) 123-4567</span>
+        <span>Mon - Fri, 9am - 6pm EST</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+</footer>
+
+</body>
+</html>
