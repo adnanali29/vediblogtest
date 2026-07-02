@@ -1,1488 +1,765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vedi Blog</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --font-primary:#1d1d1d;
-    --font-secondary:#333333;
-    --font-tertiary:#666666;
-    --font-on-dark-primary:#ffffff;
-    --neutral-white:#ffffff;
-    --neutral-charcoal:#1d1d1d;
-    --neutral-snow-light:#f5f5f5;
-    --neutral-snow-dark:#e8e8e8;
-    --border-color:#e5e7eb;
-    --accent-green-400:#5c853b;
-    --accent-teal-50:#e2efef;
-    --accent-teal-100:#c5dfdf;
-    --accent-teal-400:#3d9595;
-    --accent-rose-50:#f7e6e9;
-    --accent-rose-100:#f0cdd4;
-    --accent-rose-400:#cc576e;
-    --accent-olive-50:#f3f1e0;
-    --accent-olive-100:#e7e3c0;
-    --accent-olive-400:#afa32d;
-    --accent-yellow-50:#fef6dd;
-    --accent-yellow-100:#feecba;
-    --accent-yellow-400:#fac119;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vedi Herbals - Typography Comparison</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Khand (Headings) & Figtree (Body Option B) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Headings Font: Khand */
+        .font-khand {
+            font-family: 'Khand', sans-serif;
+        }
+        
+        /* Option A Body: Arial MT Pro simulation falling back to clean Arial */
+        .font-arial-mt {
+            font-family: "Arial MT Pro", "Arial", "Helvetica Neue", Helvetica, sans-serif;
+            letter-spacing: -0.01em;
+            line-height: 1.65;
+        }
 
-    --heading-font: 'Khand', sans-serif;
-    --body-font: Arial, "Arial MT", "Helvetica Neue", Helvetica, sans-serif;
-  }
+        /* Option B Body: Figtree */
+        .font-figtree {
+            font-family: 'Figtree', sans-serif;
+            letter-spacing: -0.015em;
+            line-height: 1.7;
+        }
 
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:var(--body-font);
-    color:var(--font-primary);
-    background:var(--neutral-white);
-    -webkit-font-smoothing:antialiased;
-  }
-  img{display:block;max-width:100%;}
-  a{text-decoration:none;color:inherit;}
-  p{margin:0;}
-  .capitalize{text-transform:capitalize;}
+        /* Customize scrollbars for a minimal modern look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(16, 185, 129, 0.4);
+        }
 
-  h1,h2,h3,h4,h5,h6,
-  .heading{
-    font-family:var(--heading-font);
-    font-weight:500;
-    margin:0;
-  }
-
-  .wrap{
-    max-width:1440px;
-    margin:0 auto;
-    position:relative;
-  }
-
-  /* ============ NAVBAR ============ */
-  .navbar{
-    background:var(--neutral-white);
-    border-bottom:1px solid var(--neutral-snow-dark);
-    height:80px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 40px;
-    position:sticky;
-    top:0;
-    z-index:50;
-  }
-  .navbar .logo{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:22px;
-    color:var(--accent-green-400);
-    display:flex;
-    align-items:center;
-    gap:6px;
-  }
-  .nav-links{
-    display:flex;
-    align-items:center;
-    height:80px;
-  }
-  .nav-item{
-    height:80px;
-    display:flex;
-    align-items:center;
-    padding:0 16px;
-    font-size:16px;
-    letter-spacing:-0.18px;
-    font-weight:500;
-    color:var(--font-primary);
-    cursor:pointer;
-  }
-  .nav-item.active{
-    border-bottom:2px solid var(--neutral-charcoal);
-  }
-  .nav-right{
-    display:flex;
-    align-items:center;
-    gap:24px;
-  }
-  .prakriti-pill{
-    background:linear-gradient(90deg,#5c853b,#3d9595);
-    color:#fff;
-    border-radius:32px;
-    padding:8px 14px;
-    font-size:12px;
-    letter-spacing:-0.12px;
-    display:flex;
-    align-items:center;
-    gap:4px;
-    white-space:nowrap;
-  }
-  .icon-btn{
-    width:24px;
-    height:24px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-  }
-  .icon-btn img{width:24px;height:24px;}
-  .logo{ display:flex; align-items:center; gap:6px; }
-
-  /* ============ HERO HEADER ============ */
-  .hero-header{
-    position:relative;
-    margin:40px 60px 0;
-    border-radius:16px;
-    overflow:hidden;
-    height:458px;
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:flex-end;
-  }
-  .hero-header::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(16,16,16,0) 40%, rgba(0,0,0,0.55) 100%);
-  }
-  .hero-content{
-    position:relative;
-    z-index:2;
-    padding:0 100px 55px;
-    max-width:680px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-  .badge-row{
-    display:flex;
-    gap:8px;
-    align-items:center;
-  }
-  .badge{
-    padding:4px 10px;
-    border-radius:999px;
-    font-size:14px;
-    font-weight:500;
-    letter-spacing:-0.16px;
-    white-space:nowrap;
-  }
-  .badge.on-dark{
-    background:rgba(255,255,255,0.2);
-    color:#fff;
-  }
-  .badge.small{
-    font-size:12px;
-    letter-spacing:-0.12px;
-  }
-  .hero-title{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:52px;
-    line-height:1;
-    color:#fff;
-    letter-spacing:-1.04px;
-  }
-  .meta-row{
-    display:flex;
-    gap:16px;
-    align-items:center;
-  }
-  .meta-item{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:14px;
-    letter-spacing:-0.16px;
-    font-weight:500;
-    color:var(--font-on-dark-primary);
-  }
-  .meta-item.dark{ color:var(--font-tertiary); }
-  .meta-item img{width:16px;height:16px;flex-shrink:0;}
-
-  /* ============ LATEST + TOP READS ============ */
-  .split-section{
-    display:flex;
-    gap:36px;
-    padding:56px 60px 0;
-    align-items:flex-start;
-    flex-wrap:wrap;
-  }
-  .col-latest{
-    flex:1 1 640px;
-    min-width:320px;
-    display:flex;
-    flex-direction:column;
-    gap:24px;
-  }
-  .col-topreads{
-    flex:1 1 620px;
-    min-width:320px;
-    display:flex;
-    flex-direction:column;
-    gap:24px;
-  }
-  .section-heading{
-    font-family:var(--heading-font);
-    font-weight:500;
-    font-size:32px;
-    letter-spacing:-0.2px;
-    line-height:38px;
-    text-transform:capitalize;
-    color:var(--font-primary);
-  }
-
-  .hero-card{
-    background:#fff;
-    border:1px solid var(--border-color);
-    border-radius:16px;
-    overflow:hidden;
-  }
-  .hero-card .image{
-    width:100%;
-    height:300px;
-    overflow:hidden;
-  }
-  .hero-card .image img{width:100%;height:100%;object-fit:cover;}
-  .hero-card .text{
-    padding:16px 32px 24px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .cat-badge{
-    background:var(--neutral-snow-light);
-    border:1px solid var(--neutral-snow-dark);
-    color:var(--font-secondary);
-  }
-  .intent-badge{
-    background:var(--accent-olive-50);
-    border:1px solid var(--accent-olive-100);
-    color:var(--accent-olive-400);
-  }
-  .intent-badge.rose{ background:var(--accent-rose-50); border-color:var(--accent-rose-100); color:var(--accent-rose-400); }
-  .intent-badge.teal{ background:var(--accent-teal-50); border-color:var(--accent-teal-100); color:var(--accent-teal-400); }
-  .intent-badge.yellow{ background:var(--accent-yellow-50); border-color:var(--accent-yellow-100); color:var(--accent-yellow-400); }
-
-  .heading-3{
-    font-family:var(--heading-font);
-    font-weight:500;
-    font-size:24px;
-    line-height:30px;
-    letter-spacing:-0.15px;
-    color:var(--font-primary);
-  }
-  .heading-6{
-    font-family:var(--heading-font);
-    font-weight:500;
-    font-size:20px;
-    line-height:24px;
-    color:var(--font-primary);
-  }
-  .body-3{
-    font-family:var(--body-font);
-    font-size:14px;
-    line-height:20px;
-    color:var(--font-secondary);
-    display:-webkit-box;
-    -webkit-line-clamp:3;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-  }
-
-  .topread-list{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .topread-item{
-    display:flex;
-    gap:17px;
-    align-items:flex-start;
-  }
-  .topread-item .thumb{
-    width:192px;
-    height:192px;
-    flex:0 0 192px;
-    border-radius:16px;
-    overflow:hidden;
-  }
-  .topread-item .thumb img{width:100%;height:100%;object-fit:cover;}
-  .topread-item .body{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    flex:1;
-    min-width:0;
-  }
-  .small-meta{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    font-size:12px;
-    color:#6a7282;
-    font-weight:500;
-  }
-
-  /* ============ CATEGORY FILTER ============ */
-  .category-filter{
-    background:var(--neutral-snow-light);
-    border-top:1px solid var(--border-color);
-    border-bottom:1px solid var(--border-color);
-    padding:24px 60px;
-    margin-top:64px;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-  .filter-pill{
-    padding:10px 24px;
-    border-radius:100px;
-    border:1.5px solid var(--neutral-snow-dark);
-    font-size:16px;
-    letter-spacing:-0.18px;
-    font-weight:500;
-    background:#fff;
-    color:#000;
-    cursor:pointer;
-    white-space:nowrap;
-  }
-  .filter-pill.active{
-    background:var(--neutral-charcoal);
-    color:#fff;
-    border-color:var(--neutral-charcoal);
-  }
-
-  /* ============ CARD GRID ============ */
-  .card-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:30px;
-    padding:40px 60px 60px;
-    max-width:1440px;
-    margin:0 auto;
-  }
-  .blog-card{
-    background:#fff;
-    border:1px solid var(--border-color);
-    border-radius:16px;
-    padding:16px;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    cursor:pointer;
-    transition:box-shadow .2s ease, transform .2s ease;
-  }
-  .blog-card:hover{
-    box-shadow:0 8px 24px rgba(0,0,0,0.08);
-    transform:translateY(-2px);
-  }
-  .blog-card .image{
-    width:100%;
-    height:264px;
-    border-radius:8px;
-    overflow:hidden;
-  }
-  .blog-card .image img{width:100%;height:100%;object-fit:cover;}
-  .blog-card .date{
-    font-size:14px;
-    color:#666;
-    font-weight:500;
-  }
-
-  /* ============ PAGINATION ============ */
-  .pagination{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    padding:20px 0 60px;
-  }
-  .page-btn{
-    width:56px;
-    height:56px;
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    font-weight:500;
-    color:#000;
-    cursor:pointer;
-  }
-  .page-btn.active{
-    background:var(--accent-green-400);
-    color:#fff;
-  }
-  .page-arrow{
-    width:56px;
-    height:56px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:8px;
-    cursor:pointer;
-  }
-  .page-arrow img{width:24px;height:24px;}
-
-  /* ============ FOOTER ============ */
-  .footer{
-    background:linear-gradient(111deg, #164903 6%, #5a8843 125%);
-    padding:40px 60px;
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    gap:30px;
-  }
-  .footer-top{
-    display:flex;
-    justify-content:space-between;
-    gap:60px;
-    flex-wrap:wrap;
-  }
-  .footer-left{
-    display:flex;
-    flex-direction:column;
-    gap:40px;
-    max-width:452px;
-    justify-content:center;
-  }
-  .footer-title{
-    font-family:var(--body-font);
-    font-weight:300;
-    font-size:32px;
-    line-height:48px;
-    letter-spacing:-0.3px;
-    color:#fff;
-  }
-  .footer-title b{font-weight:500;}
-  .newsletter{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .newsletter p{ font-size:14px; }
-  .signup-row{
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-  .email-input{
-    border:1px solid #fff;
-    border-radius:28px;
-    height:44px;
-    display:flex;
-    align-items:center;
-    padding:0 19px;
-    flex:1;
-    max-width:306px;
-  }
-  .email-input span{
-    color:var(--neutral-snow-dark);
-    font-size:12px;
-  }
-  .subscribe-btn{
-    background:#fff;
-    color:var(--accent-green-400);
-    border-radius:100px;
-    padding:10px 16px;
-    font-size:16px;
-    font-weight:500;
-    letter-spacing:-0.18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    flex:1;
-    max-width:150px;
-  }
-  .footer-bottom-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:16px;
-  }
-  .social{
-    display:flex;
-    align-items:center;
-    gap:16px;
-  }
-  .social b{
-    font-size:18px;
-    font-weight:700;
-  }
-  .social-icons{
-    display:flex;
-    gap:8px;
-  }
-  .social-icons img{width:24px;height:24px;}
-  .copyright{
-    font-size:10px;
-    color:var(--neutral-snow-dark);
-  }
-  .nav-columns{
-    display:flex;
-    gap:60px;
-    flex-wrap:wrap;
-  }
-  .nav-col{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .nav-col b{
-    font-family:var(--body-font);
-    font-weight:700;
-    font-size:18px;
-    margin-bottom:2px;
-  }
-  .nav-col span{
-    font-size:14px;
-    font-weight:500;
-  }
-  .footer-divider{
-    height:1px;
-    background:rgba(255,255,255,0.25);
-    width:100%;
-  }
-
-  /* ============ BLOG DETAIL PAGE ============ */
-  .detail-container{
-    max-width:900px;
-    margin:0 auto;
-    padding:32px 20px 60px;
-  }
-  .breadcrumb{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:14px;
-    font-weight:500;
-    color:var(--font-tertiary);
-    cursor:pointer;
-    margin-bottom:24px;
-    width:fit-content;
-  }
-  .breadcrumb:hover{ color:var(--font-primary); }
-  .breadcrumb img{width:14px;height:14px;}
-
-  .detail-main{
-    display:flex;
-    gap:24px;
-    align-items:flex-start;
-  }
-  .detail-article{
-    flex:1;
-    min-width:0;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-  .detail-title{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:38px;
-    line-height:1.15;
-    letter-spacing:-0.3px;
-    color:var(--font-primary);
-  }
-  .detail-meta{
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .author-avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:var(--accent-green-400);
-    color:#fff;
-    font-family:var(--heading-font);
-    font-size:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-  .author-info{ display:flex; flex-direction:column; gap:2px; }
-  .author-name{ font-size:14px; font-weight:700; color:var(--font-primary); }
-  .meta-sub{ display:flex; gap:8px; font-size:12px; color:var(--font-tertiary); }
-
-  .detail-hero-image{
-    width:100%;
-    max-height:420px;
-    border-radius:16px;
-    overflow:hidden;
-  }
-  .detail-hero-image img{ width:100%; height:100%; object-fit:cover; max-height:420px; }
-
-  .detail-body{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    font-size:15px;
-    line-height:26px;
-    color:var(--font-secondary);
-  }
-  .detail-body h2{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:24px;
-    color:var(--font-primary);
-    margin-top:12px;
-  }
-  .detail-body h3{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:19px;
-    color:var(--font-primary);
-    margin-top:4px;
-  }
-  .detail-body ul{ margin:0; padding-left:22px; display:flex; flex-direction:column; gap:6px; }
-  .detail-body p{ margin:0; }
-  .quote-box{
-    background:var(--accent-olive-50);
-    border-left:4px solid var(--accent-green-400);
-    border-radius:8px;
-    padding:18px 20px;
-    font-style:italic;
-    font-size:15px;
-    color:var(--font-primary);
-  }
-
-  .detail-share{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    position:sticky;
-    top:100px;
-  }
-  .detail-share img{
-    width:36px;
-    height:36px;
-    padding:8px;
-    border:1px solid var(--border-color);
-    border-radius:50%;
-    cursor:pointer;
-  }
-  .detail-share img:hover{ background:var(--neutral-snow-light); }
-
-  .comments-section{
-    margin-top:16px;
-    border-top:1px solid var(--border-color);
-    padding-top:24px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .comments-section h3{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:22px;
-  }
-  .comment-form{
-    display:flex;
-    gap:10px;
-  }
-  .comment-form input{
-    flex:1;
-    border:1px solid var(--border-color);
-    border-radius:100px;
-    padding:10px 18px;
-    font-size:14px;
-    font-family:var(--body-font);
-  }
-  .comment-form button{
-    background:var(--accent-green-400);
-    color:#fff;
-    border:none;
-    border-radius:100px;
-    padding:10px 22px;
-    font-size:14px;
-    font-weight:500;
-    cursor:pointer;
-    font-family:var(--body-font);
-  }
-  .comment-list{ display:flex; flex-direction:column; gap:16px; }
-  .comment{ display:flex; gap:12px; }
-  .comment .avatar{
-    width:32px;height:32px;border-radius:50%;
-    background:var(--accent-teal-400);
-    color:#fff;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-family:var(--heading-font);
-  }
-  .comment .body{ display:flex; flex-direction:column; gap:4px; }
-  .comment .name-row{ display:flex; gap:8px; align-items:center; font-size:13px; }
-  .comment .name-row b{ font-size:14px; }
-  .comment .name-row span{ color:var(--font-tertiary); font-size:12px; }
-  .comment .text{ font-size:14px; color:var(--font-secondary); line-height:20px; }
-  .comment .reply{ font-size:12px; color:var(--font-tertiary); cursor:pointer; width:fit-content; }
-
-  .cta-box{
-    margin-top:40px;
-    background:var(--neutral-snow-light);
-    border-radius:16px;
-    padding:24px;
-    display:flex;
-    align-items:center;
-    gap:18px;
-    flex-wrap:wrap;
-  }
-  .cta-box .avatar-lg{
-    width:56px;height:56px;border-radius:50%;
-    background:var(--accent-teal-400);color:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--heading-font);font-size:22px;flex-shrink:0;
-  }
-  .cta-box p{ font-size:15px; color:var(--font-primary); flex:1; min-width:220px; }
-  .cta-btn{
-    background:var(--accent-green-400);
-    color:#fff;
-    border-radius:100px;
-    padding:12px 24px;
-    font-size:14px;
-    font-weight:500;
-    white-space:nowrap;
-    cursor:pointer;
-  }
-
-  .detail-section-heading{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:26px;
-    margin:48px 0 20px;
-  }
-  .related-products-row{
-    display:flex;
-    gap:16px;
-    overflow-x:auto;
-    padding-bottom:8px;
-  }
-  .product-card-mini{
-    flex:0 0 200px;
-    border:1px solid var(--border-color);
-    border-radius:12px;
-    padding:12px;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .product-card-mini img{
-    width:100%;
-    height:140px;
-    object-fit:cover;
-    border-radius:8px;
-  }
-  .product-card-mini b{ font-family:var(--heading-font); font-size:16px; font-weight:600; }
-  .product-card-mini span{ font-size:12px; color:var(--font-tertiary); }
-  .product-shop-btn{
-    background:var(--accent-green-400);
-    color:#fff;
-    text-align:center;
-    border-radius:100px;
-    padding:8px;
-    font-size:13px;
-    font-weight:500;
-    margin-top:4px;
-  }
-
-  .related-blogs-row{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-  }
-  .related-blog-card{
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .related-blog-card img{
-    width:100%;
-    height:150px;
-    object-fit:cover;
-    border-radius:12px;
-  }
-  .related-blog-card h4{
-    font-family:var(--heading-font);
-    font-weight:600;
-    font-size:16px;
-  }
-  .related-blog-card span{ font-size:12px; color:var(--font-tertiary); }
-
-  @media (max-width:800px){
-    .detail-main{ flex-direction:column-reverse; }
-    .detail-share{ flex-direction:row; position:static; }
-    .detail-title{ font-size:28px; }
-    .related-blogs-row{ grid-template-columns:1fr; }
-  }
-
-  @media (max-width: 1100px){
-    .card-grid{grid-template-columns:repeat(2,1fr);}
-    .nav-links{display:none;}
-  }
-  @media (max-width: 700px){
-    .card-grid{grid-template-columns:1fr;padding-left:20px;padding-right:20px;}
-    .hero-header{margin:20px 20px 0;height:340px;}
-    .hero-content{padding:0 24px 30px;}
-    .hero-title{font-size:34px;}
-    .split-section{padding:36px 20px 0;flex-direction:column;}
-    .category-filter{padding:20px;}
-    .footer{padding:30px 20px;}
-    .topread-item{flex-direction:column;}
-    .topread-item .thumb{width:100%;flex-basis:auto;height:220px;}
-  }
-</style>
+        /* Soft herbal gradient backdrop */
+        .herbal-bg {
+            background: radial-gradient(circle at top right, #f4f6f0 0%, #fafaf7 100%);
+        }
+    </style>
 </head>
-<body>
+<body class="herbal-bg text-stone-800 font-sans min-h-screen flex flex-col antialiased">
 
-<!-- ============ NAVBAR ============ -->
-<header class="navbar">
-  <div class="logo">
-    <img src="https://www.figma.com/api/mcp/asset/23befae4-441c-4cac-ada4-6edc54438c89" alt="" style="height:36px;width:auto;">
-    <img src="https://www.figma.com/api/mcp/asset/ba6da7c7-6de8-4c08-8350-dceb72baa860" alt="Vedi Herbals" style="height:16px;width:auto;">
-  </div>
-  <nav class="nav-links">
-    <div class="nav-item">Shop all</div>
-    <div class="nav-item">Vedi wellness</div>
-    <div class="nav-item active">Blogs</div>
-    <div class="nav-item">Doctor consultation</div>
-    <div class="nav-item">Explore Vedi</div>
-  </nav>
-  <div class="nav-right">
-    <div class="prakriti-pill">
-      <img src="https://www.figma.com/api/mcp/asset/e09ddc48-9af2-46c0-bf26-eeb4364a04ba" alt="" style="width:18px;height:17px;">
-      Know your prakriti
-      <img src="https://www.figma.com/api/mcp/asset/27eaa1e0-3018-4563-8dc6-d4db12691ef0" alt="" style="width:10px;height:10px;transform:rotate(-90deg);">
-    </div>
-    <span class="icon-btn" title="Account">
-      <img src="https://www.figma.com/api/mcp/asset/17a6cecc-8ede-4c4c-a59c-5a59c03e324a" alt="Account">
-    </span>
-    <span class="icon-btn" title="Search">
-      <img src="https://www.figma.com/api/mcp/asset/3512f57e-6f14-4b35-988b-06fe679b0ce6" alt="Search">
-    </span>
-    <span class="icon-btn" title="Cart">
-      <img src="https://www.figma.com/api/mcp/asset/7cd19220-518b-4280-91ad-5b479e30c811" alt="Cart">
-    </span>
-  </div>
-</header>
-
-<div class="wrap" id="listingPage">
-
-  <!-- ============ HERO HEADER ============ -->
-  <section class="hero-header" style="background-image:url('https://www.figma.com/api/mcp/asset/9713d238-c496-459b-b5ce-bd3e57254bb8');">
-    <div class="hero-content">
-      <div class="badge-row">
-        <span class="badge on-dark">Herbs &amp; Ingredients</span>
-        <span class="badge on-dark">Heal</span>
-      </div>
-      <h1 class="hero-title">What Is the Difference Between Bhang and Ganja?</h1>
-      <div class="meta-row">
-        <span class="meta-item">
-          <img src="https://www.figma.com/api/mcp/asset/5f220955-4e38-469f-be20-a833c2d90f7d" alt="">
-          December 10, 2026
-        </span>
-        <span class="meta-item">
-          <img src="https://www.figma.com/api/mcp/asset/f22e43f2-76e0-4397-8ea4-5eb4e0a1e303" alt="">
-          Prashik Wasu
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ THE LATEST + TOP READS ============ -->
-  <section class="split-section">
-
-    <!-- Left: The Latest -->
-    <div class="col-latest">
-      <h2 class="section-heading">The Latest</h2>
-      <article class="hero-card">
-        <div class="image">
-          <img src="https://www.figma.com/api/mcp/asset/d9e27bad-7967-4dbb-b113-10514330149c" alt="Cannabis leaves">
-        </div>
-        <div class="text">
-          <div class="badge-row">
-            <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-            <span class="badge small intent-badge">Heal</span>
-          </div>
-          <h3 class="heading-3">Is Cannabis a Drug or Medicine? Understanding the Legal and Scientific Debate</h3>
-          <div class="meta-row">
-            <span class="meta-item dark">
-              <img src="https://www.figma.com/api/mcp/asset/3c28c4c4-f986-4fcc-ac50-d450d6689689" alt="">
-              December 10, 2026
-            </span>
-            <span class="meta-item dark">
-              <img src="https://www.figma.com/api/mcp/asset/f5395469-c117-413f-a9ca-c5fb28dcc5b6" alt="">
-              Prashik Wasu
-            </span>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- Right: Top Reads -->
-    <div class="col-topreads">
-      <h2 class="section-heading">Top Reads</h2>
-      <div class="topread-list">
-
-        <div class="topread-item">
-          <div class="thumb"><img src="https://www.figma.com/api/mcp/asset/c8178fb4-83e4-422a-9ee1-be82ca4419a1" alt=""></div>
-          <div class="body">
-            <div class="badge-row">
-              <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-              <span class="badge small intent-badge">Heal</span>
+    <!-- Minimal Premium Branding Header -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-stone-200/60 sticky top-0 z-50 py-4 px-6 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-emerald-800 text-white rounded-xl flex items-center justify-center shadow-md shadow-emerald-800/20">
+                    <i class="fa-solid fa-leaf text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-emerald-900 font-khand leading-none uppercase">VEDI HERBALS</h1>
+                    <p class="text-[10px] text-stone-500 uppercase tracking-widest mt-1 font-semibold">Typography Study: Option A vs. Option B</p>
+                </div>
             </div>
-            <h3 class="heading-6">The Ancient Wisdom of Turmeric and Ginger</h3>
-            <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-            <div class="small-meta"><span>December 10, 2026</span><span>•</span><span>Prashik Wasu</span></div>
-          </div>
-        </div>
-
-        <div class="topread-item">
-          <div class="thumb"><img src="https://www.figma.com/api/mcp/asset/fbe6b8b2-fb02-4d05-9650-bfa2733a35d2" alt=""></div>
-          <div class="body">
-            <div class="badge-row">
-              <span class="badge small cat-badge">Conditions &amp; Symptoms</span>
-              <span class="badge small intent-badge rose">Prevent</span>
+            
+            <div class="flex items-center gap-2">
+                <span class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-100 px-3 py-1.5 rounded-full font-medium flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Auto-Synchronized Scrolling Active
+                </span>
             </div>
-            <h3 class="heading-6">The Ancient Wisdom of Turmeric and Ginger</h3>
-            <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-            <div class="small-meta"><span>December 10, 2026</span><span>•</span><span>Prashik Wasu</span></div>
-          </div>
         </div>
+    </header>
 
-        <div class="topread-item">
-          <div class="thumb"><img src="https://www.figma.com/api/mcp/asset/4a6d049d-a46b-4528-900a-5de206111462" alt=""></div>
-          <div class="body">
-            <div class="badge-row">
-              <span class="badge small cat-badge">Lifestyle &amp; Wellness</span>
-              <span class="badge small intent-badge yellow">Enhance</span>
+    <!-- Main Comparison Canvas -->
+    <main class="flex-grow grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-stone-200 h-[calc(100vh-80px)] overflow-hidden">
+        
+        <!-- ==================== LEFT COLUMN: OPTION A ==================== -->
+        <div id="panel-left" class="overflow-y-auto px-6 md:px-12 lg:px-16 py-12 bg-white/40" onscroll="syncScroll('left')">
+            <div class="max-w-xl mx-auto">
+                
+                <!-- Spec Sticky Tag -->
+                <div class="mb-10 p-5 bg-stone-100 border border-stone-200 rounded-2xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold tracking-wider text-emerald-800 uppercase">SPECIFICATION A</span>
+                        <span class="text-[11px] bg-stone-200 text-stone-600 px-2 py-0.5 rounded font-mono font-bold">Standard Clean</span>
+                    </div>
+                    <h3 class="font-khand text-2xl font-bold text-stone-900 leading-none">Khand + Arial MT Pro</h3>
+                    <p class="text-xs text-stone-500 mt-1.5">Neutral, clinical, and structurally authoritative representation of Ayurvedic research papers.</p>
+                </div>
+
+                <!-- Blog Article Container (Arial MT Pro Body) -->
+                <article class="font-arial-mt text-stone-700 text-base space-y-6">
+                    
+                    <div class="flex items-center gap-3 text-xs text-stone-500 font-semibold tracking-wider uppercase">
+                        <span>December 2025</span>
+                        <span>•</span>
+                        <span class="text-emerald-800">Ayurveda & Science</span>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="font-khand text-4xl md:text-5xl font-bold text-stone-900 uppercase leading-[1.05] tracking-tight">
+                        Is Cannabis a Drug or Medicine? Understanding the Legal and Scientific Debate
+                    </h1>
+
+                    <!-- Socials Mock -->
+                    <div class="flex gap-4 text-stone-400 text-sm border-y border-stone-200/60 py-2.5">
+                        <a href="#" class="hover:text-emerald-800 transition-colors"><i class="fa-brands fa-facebook-f mr-1"></i> Facebook</a>
+                        <a href="#" class="hover:text-emerald-800 transition-colors"><i class="fa-brands fa-twitter mr-1"></i> Twitter</a>
+                        <a href="#" class="hover:text-emerald-800 transition-colors"><i class="fa-brands fa-instagram mr-1"></i> Instagram</a>
+                    </div>
+
+                    <!-- Paragraph 1 -->
+                    <p class="text-lg text-stone-900 font-medium leading-relaxed">
+                        In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as <span class="italic text-emerald-800 font-semibold">Vijaya</span>, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However, with the rise of recreational use and its association with substance abuse, cannabis today finds itself in a grey zone. Is cannabis a drug that causes dependency, or a medicine capable of healing chronic diseases?
+                    </p>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        What is Cannabis? A Breakdown of Vijaya
+                    </h2>
+
+                    <p>
+                        “Cannabis” refers to a group of plants in the <span class="italic font-semibold">Cannabis sativa</span> species. In Ayurveda, it is called Vijaya, meaning “the victorious one”—a name given due to its effectiveness in managing pain and disorders of the nervous system.
+                    </p>
+
+                    <p>The Vijaya plant consists of several parts:</p>
+
+                    <!-- Unordered list -->
+                    <ul class="space-y-3 pl-2 border-l-2 border-stone-200">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Leaves:</strong> Used in Ayurvedic medicine and legally allowed in India for medicinal preparations.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Flowers:</strong> The most potent part, containing high concentrations of active cannabinoids; often regulated or prohibited under narcotics laws.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Seeds:</strong> Contain no cannabinoids; used for their nutritional value in cannabis seed oil/ Hemp seed oil.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Stems and stalks:</strong> Used in industrial hemp products.</span>
+                        </li>
+                    </ul>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Key Components of Vijaya
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-stone-50 border border-stone-100 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">THC (Tetrahydrocannabinol)</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>The psychoactive compound that creates a “high.”</li>
+                                <li>Also contributes to pain relief, appetite stimulation, and sleep induction.</li>
+                            </ol>
+                        </div>
+
+                        <div class="p-4 bg-stone-50 border border-stone-100 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">CBD (Cannabidiol)</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>Non-psychoactive, calming, and anti-inflammatory.</li>
+                                <li>Widely used in modern medicine for epilepsy, anxiety, and chronic pain.</li>
+                            </ol>
+                        </div>
+
+                        <div class="p-4 bg-stone-50 border border-stone-100 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">Other Cannabinoids (CBG, CBN, CBC)</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>Emerging compounds with possible roles in anti-inflammatory and neuroprotective therapies.</li>
+                            </ol>
+                        </div>
+
+                        <div class="p-4 bg-stone-50 border border-stone-100 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">Terpenes and Flavonoids</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>Aromatic compounds that affect the plant’s smell, flavor, and therapeutic profile.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        How Cannabis Acts on the Brain and Body
+                    </h2>
+
+                    <p>
+                        The human body contains a natural system called the <strong>Endocannabinoid System (ECS)</strong>, which helps maintain balance (homeostasis) in processes like mood, pain, appetite, and sleep.
+                    </p>
+
+                    <p>Cannabinoids like THC and CBD mimic the body's own endocannabinoids and bind to specific receptors:</p>
+
+                    <ul class="space-y-3 pl-2 border-l-2 border-stone-200">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-sm"><i class="fa-solid fa-circle-check"></i></span>
+                            <span><strong>CB1 receptors:</strong> Found primarily in the brain and nervous system; interact with THC to affect mood, memory, and perception.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-sm"><i class="fa-solid fa-circle-check"></i></span>
+                            <span><strong>CB2 receptors:</strong> Found in immune cells and tissues; interact with CBD and other cannabinoids to reduce inflammation.</span>
+                        </li>
+                    </ul>
+
+                    <!-- Nested bullet point styled box -->
+                    <div class="p-5 bg-stone-50 border border-stone-100 rounded-2xl">
+                        <h4 class="font-bold text-stone-900 mb-2 text-sm">Cannabis Effects on the Brain</h4>
+                        <ul class="space-y-1.5 text-xs text-stone-600">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                                <span>Alters neurotransmitter release (e.g., dopamine and serotonin)</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                                <span>Changes perception of pain and time</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                                <span>Can cause relaxation or, at high doses, anxiety and paranoia</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Why Is Cannabis Called a Drug?
+                    </h2>
+
+                    <p>
+                        The term “drug” is often loaded with negativity. While in pharmacology it simply means “any substance that causes a physiological change,” in everyday language it is often associated with addiction and illegality.
+                    </p>
+
+                    <p>
+                        Cannabis is classified as a psychoactive drug because it alters brain function and can impact perception, mood, and consciousness. This classification underlies its restriction under narcotics laws in many countries, including India.
+                    </p>
+
+                    <p>
+                        In India, <strong>The Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985</strong> criminalizes cannabis resin (charas) and flowers (ganja) but excludes the leaves and seeds, which is why bhang remains legal.
+                    </p>
+
+                    <p>
+                        Globally, cannabis remains in legal limbo. Some countries classify it as a Schedule I drug (high potential for abuse), while others—like Canada and certain U.S. states—have legalized it fully for both recreational and medicinal use.
+                    </p>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Cannabis and Inflammation: A Scientific Perspective
+                    </h2>
+
+                    <p>
+                        Modern research has uncovered that cannabis doesn’t just act on the brain—it also plays a significant role in immune system regulation. The cannabinoids found in cannabis are known to reduce chronic inflammation, a common underlying cause of many diseases.
+                    </p>
+
+                    <div class="bg-emerald-50/40 border border-emerald-100 p-5 rounded-2xl">
+                        <h4 class="font-bold text-emerald-950 mb-3 text-sm">Mechanisms of Anti-Inflammatory Action</h4>
+                        <ul class="space-y-2 text-xs text-stone-700">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-600 mt-1"><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                                <span>CBD suppresses pro-inflammatory cytokines, chemicals that trigger immune overreactions.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                *<span class="text-emerald-600 mt-1"><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                                <span>Cannabinoids inhibit COX enzymes, similar to how NSAIDs (like ibuprofen) work.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-600 mt-1"><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                                <span>Modulates immune cell signaling via CB2 receptors.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p>This anti-inflammatory action is especially beneficial in:</p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-bold text-stone-600 pl-2 border-l-2 border-stone-200">
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Rheumatoid arthritis</li>
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Inflammatory bowel disease</li>
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Multiple sclerosis</li>
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Asthma and allergic reactions</li>
+                        <li class="col-span-1 sm:col-span-2"><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Autoimmune conditions</li>
+                    </ul>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Cannabis Medical Uses: What Is It Really Good For?
+                    </h2>
+
+                    <p>
+                        The medical community has increasingly recognized cannabis for its therapeutic benefits. Let’s explore what medical cannabis is used for across different conditions:
+                    </p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">1. Chronic Pain</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">One of the most well-established uses. Patients with arthritis, cancer, or neuropathy report significant relief.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">2. Epilepsy</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">CBD-based medicines like Epidiolex are approved for rare forms of epilepsy like Dravet syndrome and Lennox-Gastaut syndrome.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">3. Anxiety and Depression</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">CBD acts as a natural anxiolytic, though THC in high doses may exacerbate symptoms.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">4. Cancer Support</h4>
+                            <ul class="list-disc pl-5 text-xs text-stone-600 space-y-1 mt-1">
+                                <li>Reducing chemotherapy-induced nausea</li>
+                                <li>Enhancing appetite</li>
+                                <li>Easing cancer-related pain</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">5. Sleep Disorders</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">THC promotes sleep, while CBD helps regulate circadian rhythms, offering an alternative to synthetic sleep aids.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">6. Parkinson’s and Alzheimer’s</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">Preliminary research suggests cannabis may help reduce tremors, agitation, and improve cognition in neurodegenerative disorders.</p>
+                        </div>
+                    </div>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Scientific Research Supporting Medical Use
+                    </h2>
+
+                    <p>
+                        The debate over cannabis as a drug or medicine isn’t just philosophical; it’s supported by mounting scientific evidence. Here are some landmark studies:
+                    </p>
+
+                    <ul class="space-y-4 pl-2 border-l-2 border-stone-200">
+                        <li class="text-xs text-stone-600">
+                            <strong>2018 WHO Review on Cannabidiol (CBD):</strong> Concluded that CBD is well-tolerated, with no indication of abuse or dependence potential.
+                        </li>
+                        <li class="text-xs text-stone-600">
+                            <strong>Harvard Medical School Review (2020):</strong> Highlighted positive outcomes in chronic pain and sleep disorders.
+                        </li>
+                        <li class="text-xs text-stone-600">
+                            <strong>The Lancet Neurology (2017):</strong> Found that medical cannabis significantly reduced seizures in treatment-resistant epilepsy.
+                        </li>
+                    </ul>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Legal vs. Scientific: Where the Debate Stands
+                    </h2>
+
+                    <p>
+                        The central debate—is cannabis a drug or medicine? —often stems from a disconnect between legal restrictions and scientific findings.
+                    </p>
+
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1.5 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Legally,</strong> cannabis is still classified as a narcotic in many countries, leading to fear, stigma, and underutilization of its medical potential.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1.5 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Scientifically,</strong> cannabis is emerging as a safe and effective remedy for numerous conditions, when used responsibly and under guidance.</span>
+                        </li>
+                    </ul>
+
+                    <p>
+                        In India, medicinal cannabis is legal under Ayurvedic regulations, with licensed companies offering prescription-based oils and capsules. However, there’s a dire need for broader public education and regulatory clarity.
+                    </p>
+
+                    <!-- Quote Block -->
+                    <div class="p-6 bg-emerald-900 text-white rounded-2xl relative overflow-hidden">
+                        <div class="absolute right-3 bottom-0 text-white/10 text-9xl font-serif pointer-events-none">“</div>
+                        <p class="text-lg font-khand font-semibold uppercase tracking-wider mb-2">The Balanced Verdict</p>
+                        <p class="text-xs leading-relaxed text-emerald-100">
+                            Cannabis, or Vijaya, walks a fine line between remedy and risk. Its centuries-old legacy in Indian medicine, combined with modern scientific validation, reveals that it’s not just a drug, but a powerful medicinal agent when used appropriately.
+                        </p>
+                    </div>
+
+                    <p class="italic text-stone-500 text-sm">
+                        Still, context is everything.
+                    </p>
+
+                    <ul class="space-y-1 text-sm font-semibold">
+                        <li class="text-amber-800"><i class="fa-solid fa-circle-exclamation mr-1.5"></i> As a drug, it can impair judgment and become addictive if misused.</li>
+                        <li class="text-emerald-800"><i class="fa-solid fa-circle-check mr-1.5"></i> As a medicine, it can reduce suffering, treat chronic illnesses, and improve quality of life.</li>
+                    </ul>
+
+                    <p>
+                        Understanding the difference lies in dosage, intention, regulation, and guidance.
+                    </p>
+
+                    <p class="font-medium text-stone-900">
+                        As the world shifts toward more evidence-based healthcare, perhaps it’s time we shed the stigma and recognize cannabis for what it truly is—a complex, misunderstood, yet potentially transformative gift of nature.
+                    </p>
+
+                </article>
             </div>
-            <h3 class="heading-6">The Ancient Wisdom of Yoga</h3>
-            <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-            <div class="small-meta"><span>December 10, 2026</span><span>•</span><span>Prashik Wasu</span></div>
-          </div>
         </div>
 
-      </div>
-    </div>
-  </section>
+        <!-- ==================== RIGHT COLUMN: OPTION B ==================== -->
+        <div id="panel-right" class="overflow-y-auto px-6 md:px-12 lg:px-16 py-12 bg-[#fbfbf9]" onscroll="syncScroll('right')">
+            <div class="max-w-xl mx-auto">
+                
+                <!-- Spec Sticky Tag -->
+                <div class="mb-10 p-5 bg-emerald-50/50 border border-emerald-100/60 rounded-2xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold tracking-wider text-emerald-800 uppercase">SPECIFICATION B</span>
+                        <span class="text-[11px] bg-emerald-800 text-white px-2 py-0.5 rounded font-mono font-bold">Modern Web</span>
+                    </div>
+                    <h3 class="font-khand text-2xl font-bold text-stone-900 leading-none">Khand + Figtree</h3>
+                    <p class="text-xs text-stone-500 mt-1.5">A modern geometric approach designed to improve mobile accessibility, character tracking, and readability.</p>
+                </div>
 
-  <!-- ============ CATEGORY FILTER ============ -->
-  <section class="category-filter">
-    <span class="filter-pill active">All</span>
-    <span class="filter-pill">Herbs &amp; Ingredients</span>
-    <span class="filter-pill">Cannabis &amp; Vijaya</span>
-    <span class="filter-pill">Condition &amp; Symptoms</span>
-    <span class="filter-pill">Ayurvedic Therapies</span>
-    <span class="filter-pill">Fundamentals</span>
-    <span class="filter-pill">Lifestyle &amp; Wellness</span>
-  </section>
+                <!-- Blog Article Container (Figtree Body) -->
+                <article class="font-figtree text-stone-700 text-base space-y-6">
+                    
+                    <div class="flex items-center gap-3 text-xs text-stone-500 font-semibold tracking-wider uppercase">
+                        <span>December 2025</span>
+                        <span>•</span>
+                        <span class="text-emerald-800">Ayurveda & Science</span>
+                    </div>
 
-  <!-- ============ CARD GRID ============ -->
-  <section class="card-grid">
+                    <!-- Title -->
+                    <h1 class="font-khand text-4xl md:text-5xl font-bold text-stone-900 uppercase leading-[1.05] tracking-tight">
+                        Is Cannabis a Drug or Medicine? Understanding the Legal and Scientific Debate
+                    </h1>
 
-    <article class="blog-card" onclick="showBlog('back-pain')">
-      <div class="image"><img src="https://vediherbals.com/cdn/shop/articles/Healing_Chronic_Back_Pain_with_Ayurveda_A_Holistic_Approach_to_Wellness_b7066ec1-500a-4b3d-b18d-983d4c6b52c6.jpg?v=1742807896" alt="Chronic Back Pain in Ayurveda"></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Condition &amp; Symptoms</span>
-        <span class="badge small intent-badge rose">Prevent</span>
-      </div>
-      <h3 class="heading-6">Chronic Back Pain in Ayurveda: Causes, Therapies &amp; Remedies</h3>
-      <p class="body-3">Persistent back pain is one of the most common musculoskeletal complaints today. Ayurveda traces it to a Vata imbalance, and treats it through Gridhrasi and Kati Gata Vata protocols using Panchakarma, herbs and lifestyle changes.</p>
-      <span class="date">Mar 24, 2025</span>
-    </article>
+                    <!-- Socials Mock -->
+                    <div class="flex gap-4 text-stone-400 text-sm border-y border-stone-200/60 py-2.5">
+                        <a href="#" class="hover:text-emerald-800 transition-colors"><i class="fa-brands fa-facebook-f mr-1"></i> Facebook</a>
+                        <a href="#" class="hover:text-emerald-800 transition-colors"><i class="fa-brands fa-twitter mr-1"></i> Twitter</a>
+                        <a href="#" class="hover:text-emerald-800 transition-colors"><i class="fa-brands fa-instagram mr-1"></i> Instagram</a>
+                    </div>
 
-    <article class="blog-card" onclick="showBlog('nasya-karma')">
-      <div class="image"><img src="https://vediherbals.com/cdn/shop/articles/Breathe_Easy_Feel_Better_with_Nasya_Karma_Therapy_9dcd4242-8e4e-4773-b843-92f46a28bde6.jpg?v=1742809846" alt="Nasya Karma Therapy"></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Ayurvedic Therapies</span>
-        <span class="badge small intent-badge yellow">Enhance</span>
-      </div>
-      <h3 class="heading-6">Nasya Karma: The Ayurvedic Nasal Therapy for Health &amp; Wellness</h3>
-      <p class="body-3">Nasya Karma, one of Ayurveda's five Panchakarma therapies, uses medicated oils administered through the nose to clear the sinuses, calm the mind and support long-term wellness.</p>
-      <span class="date">Mar 24, 2025</span>
-    </article>
+                    <!-- Paragraph 1 -->
+                    <p class="text-lg text-stone-900 font-medium leading-relaxed">
+                        In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as <span class="italic text-emerald-800 font-semibold">Vijaya</span>, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However, with the rise of recreational use and its association with substance abuse, cannabis today finds itself in a grey zone. Is cannabis a drug that causes dependency, or a medicine capable of healing chronic diseases?
+                    </p>
 
-    <article class="blog-card" onclick="showBlog('hemp-cultivation')">
-      <div class="image"><img src="https://vediherbals.com/cdn/shop/articles/Hemp_Cultivation_in_India_8a402888-f1ff-4b87-9b17-3b3225d87b0c.jpg?v=1742797551" alt="Hemp Cultivation in India"></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Cannabis &amp; Vijaya</span>
-        <span class="badge small intent-badge">Fundamentals</span>
-      </div>
-      <h3 class="heading-6">Hemp Cultivation in India: A Sustainable &amp; Legal Opportunity</h3>
-      <p class="body-3">Hemp farming is gaining ground in India thanks to its low environmental footprint and wide industrial use. Here's where it stands legally, how it's grown, and the opportunity it offers farmers.</p>
-      <span class="date">Mar 24, 2025</span>
-    </article>
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        What is Cannabis? A Breakdown of Vijaya
+                    </h2>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/9d5d6f2a-49e0-4793-a6fb-b17fe6dc8ff2" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Ayurvedic Therapies</span>
-        <span class="badge small intent-badge yellow">Enhance</span>
-      </div>
-      <h3 class="heading-6">Five sacred therapies for total body restoration</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
+                    <p>
+                        “Cannabis” refers to a group of plants in the <span class="italic font-semibold">Cannabis sativa</span> species. In Ayurveda, it is called Vijaya, meaning “the victorious one”—a name given due to its effectiveness in managing pain and disorders of the nervous system.
+                    </p>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/01476fe1-276b-42d0-a8c3-9ea6ba757f1a" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Lifestyle &amp; Wellness</span>
-        <span class="badge small intent-badge teal">Restore</span>
-      </div>
-      <h3 class="heading-6">Revive your senses with traditional Ayurvedic healing</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
+                    <p>The Vijaya plant consists of several parts:</p>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/7a0fe9e9-7818-4498-ae4a-7baf33ecc839" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-        <span class="badge small intent-badge teal">Restore</span>
-      </div>
-      <h3 class="heading-6">Holistic detox to align your body, mind, and spirit</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
+                    <!-- Unordered list -->
+                    <ul class="space-y-3 pl-2 border-l-2 border-emerald-800/20">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Leaves:</strong> Used in Ayurvedic medicine and legally allowed in India for medicinal preparations.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Flowers:</strong> The most potent part, containing high concentrations of active cannabinoids; often regulated or prohibited under narcotics laws.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Seeds:</strong> Contain no cannabinoids; used for their nutritional value in cannabis seed oil/ Hemp seed oil.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Stems and stalks:</strong> Used in industrial hemp products.</span>
+                        </li>
+                    </ul>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/1d6e0e2c-fdaa-4930-9215-97fe14b6faa8" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-        <span class="badge small intent-badge teal">Restore</span>
-      </div>
-      <h3 class="heading-6">Transform your wellness with time-honored Panchakarma</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Key Components of Vijaya
+                    </h2>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/495cfab2-4c28-47b7-aebc-21e9600ac9c7" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-        <span class="badge small intent-badge teal">Restore</span>
-      </div>
-      <h3 class="heading-6">Reclaim your vitality through Ayurveda's deepest healing</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-emerald-50/10 border border-stone-200/50 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">THC (Tetrahydrocannabinol)</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>The psychoactive compound that creates a “high.”</li>
+                                <li>Also contributes to pain relief, appetite stimulation, and sleep induction.</li>
+                            </ol>
+                        </div>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/236ddfa4-3db0-496d-86f4-8f21468b419d" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-        <span class="badge small intent-badge teal">Restore</span>
-      </div>
-      <h3 class="heading-6">The Panchakarma journey: five paths to purification</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
+                        <div class="p-4 bg-emerald-50/10 border border-stone-200/50 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">CBD (Cannabidiol)</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>Non-psychoactive, calming, and anti-inflammatory.</li>
+                                <li>Widely used in modern medicine for epilepsy, anxiety, and chronic pain.</li>
+                            </ol>
+                        </div>
 
-  </section>
+                        <div class="p-4 bg-emerald-50/10 border border-stone-200/50 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">Other Cannabinoids (CBG, CBN, CBC)</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>Emerging compounds with possible roles in anti-inflammatory and neuroprotective therapies.</li>
+                            </ol>
+                        </div>
 
-  <!-- ============ PAGINATION ============ -->
-  <nav class="pagination">
-    <span class="page-arrow">
-      <img src="https://www.figma.com/api/mcp/asset/59aa2285-2ebd-4bd8-b993-40ac855cbbd4" alt="Previous">
-    </span>
-    <span class="page-btn">1</span>
-    <span class="page-btn active">2</span>
-    <span class="page-btn">3</span>
-    <span class="page-btn">4</span>
-    <span class="page-btn">5</span>
-    <span class="page-arrow">
-      <img src="https://www.figma.com/api/mcp/asset/b42c90b1-6b27-4aff-a763-4959619b6085" alt="Next">
-    </span>
-  </nav>
+                        <div class="p-4 bg-emerald-50/10 border border-stone-200/50 rounded-xl">
+                            <h4 class="font-bold text-stone-900 text-sm">Terpenes and Flavonoids</h4>
+                            <ol class="list-decimal pl-5 mt-1 text-xs text-stone-600 space-y-1">
+                                <li>Aromatic compounds that affect the plant’s smell, flavor, and therapeutic profile.</li>
+                            </ol>
+                        </div>
+                    </div>
 
-</div>
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        How Cannabis Acts on the Brain and Body
+                    </h2>
 
-<!-- ============ BLOG DETAIL PAGE (hidden by default) ============ -->
-<div class="wrap" id="detailPage" style="display:none;">
-  <div class="detail-container">
+                    <p>
+                        The human body contains a natural system called the <strong>Endocannabinoid System (ECS)</strong>, which helps maintain balance (homeostasis) in processes like mood, pain, appetite, and sleep.
+                    </p>
 
-    <div class="breadcrumb" onclick="showListing()">
-      <img src="https://www.figma.com/api/mcp/asset/59aa2285-2ebd-4bd8-b993-40ac855cbbd4" alt="">
-      Back to Blog
-    </div>
+                    <p>Cannabinoids like THC and CBD mimic the body's own endocannabinoids and bind to specific receptors:</p>
 
-    <div class="detail-main">
-      <div class="detail-article">
-        <div class="badge-row" id="detailBadges"></div>
-        <h1 class="detail-title" id="detailTitle"></h1>
+                    <ul class="space-y-3 pl-2 border-l-2 border-emerald-800/20">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-sm"><i class="fa-solid fa-circle-check"></i></span>
+                            <span><strong>CB1 receptors:</strong> Found primarily in the brain and nervous system; interact with THC to affect mood, memory, and perception.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1 flex-shrink-0 text-sm"><i class="fa-solid fa-circle-check"></i></span>
+                            <span><strong>CB2 receptors:</strong> Found in immune cells and tissues; interact with CBD and other cannabinoids to reduce inflammation.</span>
+                        </li>
+                    </ul>
 
-        <div class="detail-meta">
-          <div class="author-avatar" id="detailAvatar"></div>
-          <div class="author-info">
-            <span class="author-name" id="detailAuthor"></span>
-            <div class="meta-sub">
-              <span id="detailDate"></span>
-              <span>•</span>
-              <span id="detailReadTime"></span>
+                    <!-- Nested bullet point styled box -->
+                    <div class="p-5 bg-stone-50 border border-stone-200/50 rounded-2xl">
+                        <h4 class="font-bold text-stone-900 mb-2 text-sm">Cannabis Effects on the Brain</h4>
+                        <ul class="space-y-1.5 text-xs text-stone-600">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                                <span>Alters neurotransmitter release (e.g., dopamine and serotonin)</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                                <span>Changes perception of pain and time</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                                <span>Can cause relaxation or, at high doses, anxiety and paranoia</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Why Is Cannabis Called a Drug?
+                    </h2>
+
+                    <p>
+                        The term “drug” is often loaded with negativity. While in pharmacology it simply means “any substance that causes a physiological change,” in everyday language it is often associated with addiction and illegality.
+                    </p>
+
+                    <p>
+                        Cannabis is classified as a psychoactive drug because it alters brain function and can impact perception, mood, and consciousness. This classification underlies its restriction under narcotics laws in many countries, including India.
+                    </p>
+
+                    <p>
+                        In India, <strong>The Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985</strong> criminalizes cannabis resin (charas) and flowers (ganja) but excludes the leaves and seeds, which is why bhang remains legal.
+                    </p>
+
+                    <p>
+                        Globally, cannabis remains in legal limbo. Some countries classify it as a Schedule I drug (high potential for abuse), while others—like Canada and certain U.S. states—have legalized it fully for both recreational and medicinal use.
+                    </p>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Cannabis and Inflammation: A Scientific Perspective
+                    </h2>
+
+                    <p>
+                        Modern research has uncovered that cannabis doesn’t just act on the brain—it also plays a significant role in immune system regulation. The cannabinoids found in cannabis are known to reduce chronic inflammation, a common underlying cause of many diseases.
+                    </p>
+
+                    <div class="bg-emerald-50/40 border border-emerald-100 p-5 rounded-2xl">
+                        <h4 class="font-bold text-emerald-950 mb-3 text-sm">Mechanisms of Anti-Inflammatory Action</h4>
+                        <ul class="space-y-2 text-xs text-stone-700">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-600 mt-1"><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                                <span>CBD suppresses pro-inflammatory cytokines, chemicals that trigger immune overreactions.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-600 mt-1"><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                                <span>Cannabinoids inhibit COX enzymes, similar to how NSAIDs (like ibuprofen) work.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-600 mt-1"><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+                                <span>Modulates immune cell signaling via CB2 receptors.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p>This anti-inflammatory action is especially beneficial in:</p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-bold text-stone-600 pl-2 border-l-2 border-emerald-800/20">
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Rheumatoid arthritis</li>
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Inflammatory bowel disease</li>
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Multiple sclerosis</li>
+                        <li><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Asthma and allergic reactions</li>
+                        <li class="col-span-1 sm:col-span-2"><i class="fa-solid fa-caret-right text-emerald-700 mr-1.5"></i> Autoimmune conditions</li>
+                    </ul>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Cannabis Medical Uses: What Is It Really Good For?
+                    </h2>
+
+                    <p>
+                        The medical community has increasingly recognized cannabis for its therapeutic benefits. Let’s explore what medical cannabis is used for across different conditions:
+                    </p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">1. Chronic Pain</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">One of the most well-established uses. Patients with arthritis, cancer, or neuropathy report significant relief.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">2. Epilepsy</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">CBD-based medicines like Epidiolex are approved for rare forms of epilepsy like Dravet syndrome and Lennox-Gastaut syndrome.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">3. Anxiety and Depression</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">CBD acts as a natural anxiolytic, though THC in high doses may exacerbate symptoms.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">4. Cancer Support</h4>
+                            <ul class="list-disc pl-5 text-xs text-stone-600 space-y-1 mt-1">
+                                <li>Reducing chemotherapy-induced nausea</li>
+                                <li>Enhancing appetite</li>
+                                <li>Easing cancer-related pain</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">5. Sleep Disorders</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">THC promotes sleep, while CBD helps regulate circadian rhythms, offering an alternative to synthetic sleep aids.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-sm">6. Parkinson’s and Alzheimer’s</h4>
+                            <p class="text-xs text-stone-600 mt-0.5">Preliminary research suggests cannabis may help reduce tremors, agitation, and improve cognition in neurodegenerative disorders.</p>
+                        </div>
+                    </div>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Scientific Research Supporting Medical Use
+                    </h2>
+
+                    <p>
+                        The debate over cannabis as a drug or medicine isn’t just philosophical; it’s supported by mounting scientific evidence. Here are some landmark studies:
+                    </p>
+
+                    <ul class="space-y-4 pl-2 border-l-2 border-emerald-800/20">
+                        <li class="text-xs text-stone-600">
+                            <strong>2018 WHO Review on Cannabidiol (CBD):</strong> Concluded that CBD is well-tolerated, with no indication of abuse or dependence potential.
+                        </li>
+                        <li class="text-xs text-stone-600">
+                            <strong>Harvard Medical School Review (2020):</strong> Highlighted positive outcomes in chronic pain and sleep disorders.
+                        </li>
+                        <li class="text-xs text-stone-600">
+                            <strong>The Lancet Neurology (2017):</strong> Found that medical cannabis significantly reduced seizures in treatment-resistant epilepsy.
+                        </li>
+                    </ul>
+
+                    <!-- Header 2 -->
+                    <h2 class="font-khand text-3xl font-bold text-stone-900 uppercase pt-4 leading-none border-b pb-2 border-stone-200">
+                        Legal vs. Scientific: Where the Debate Stands
+                    </h2>
+
+                    <p>
+                        The central debate—is cannabis a drug or medicine? —often stems from a disconnect between legal restrictions and scientific findings.
+                    </p>
+
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1.5 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Legally,</strong> cannabis is still classified as a narcotic in many countries, leading to fear, stigma, and underutilization of its medical potential.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-700 mt-1.5 flex-shrink-0 text-[10px]"><i class="fa-solid fa-circle"></i></span>
+                            <span><strong>Scientifically,</strong> cannabis is emerging as a safe and effective remedy for numerous conditions, when used responsibly and under guidance.</span>
+                        </li>
+                    </ul>
+
+                    <p>
+                        In India, medicinal cannabis is legal under Ayurvedic regulations, with licensed companies offering prescription-based oils and capsules. However, there’s a dire need for broader public education and regulatory clarity.
+                    </p>
+
+                    <!-- Quote Block -->
+                    <div class="p-6 bg-emerald-950 text-white rounded-2xl relative overflow-hidden">
+                        <div class="absolute right-3 bottom-0 text-white/10 text-9xl font-serif pointer-events-none">“</div>
+                        <p class="text-lg font-khand font-semibold uppercase tracking-wider mb-2">The Balanced Verdict</p>
+                        <p class="text-xs leading-relaxed text-emerald-100">
+                            Cannabis, or Vijaya, walks a fine line between remedy and risk. Its centuries-old legacy in Indian medicine, combined with modern scientific validation, reveals that it’s not just a drug, but a powerful medicinal agent when used appropriately.
+                        </p>
+                    </div>
+
+                    <p class="italic text-stone-500 text-sm">
+                        Still, context is everything.
+                    </p>
+
+                    <ul class="space-y-1 text-sm font-semibold">
+                        <li class="text-amber-800"><i class="fa-solid fa-circle-exclamation mr-1.5"></i> As a drug, it can impair judgment and become addictive if misused.</li>
+                        <li class="text-emerald-800"><i class="fa-solid fa-circle-check mr-1.5"></i> As a medicine, it can reduce suffering, treat chronic illnesses, and improve quality of life.</li>
+                    </ul>
+
+                    <p>
+                        Understanding the difference lies in dosage, intention, regulation, and guidance.
+                    </p>
+
+                    <p class="font-medium text-stone-900">
+                        As the world shifts toward more evidence-based healthcare, perhaps it’s time we shed the stigma and recognize cannabis for what it truly is—a complex, misunderstood, yet potentially transformative gift of nature.
+                    </p>
+
+                </article>
             </div>
-          </div>
         </div>
 
-        <div class="detail-hero-image"><img id="detailImage" src="" alt=""></div>
+    </main>
 
-        <div class="detail-body" id="detailBody"></div>
+    <!-- Script handling default Automatic Scroll Sync -->
+    <script>
+        const panelLeft = document.getElementById('panel-left');
+        const panelRight = document.getElementById('panel-right');
 
-        <div class="cta-box">
-          <div class="avatar-lg">Dr</div>
-          <p>Get expert medical advice from top Ayurvedic doctors, anytime, anywhere.</p>
-          <div class="cta-btn">Book Doctor Consultation</div>
-        </div>
+        let isSyncingLeft = false;
+        let isSyncingRight = false;
 
-        <div class="comments-section">
-          <h3>Comments</h3>
-          <div class="comment-form">
-            <input type="text" placeholder="Share your thoughts...">
-            <button>Post</button>
-          </div>
-          <div class="comment-list">
-            <div class="comment">
-              <div class="avatar">A</div>
-              <div class="body">
-                <div class="name-row"><b>Aditi</b><span>2 days ago</span></div>
-                <p class="text">This is such a practical breakdown, thank you for explaining the difference so clearly.</p>
-                <span class="reply">Reply</span>
-              </div>
-            </div>
-            <div class="comment">
-              <div class="avatar">M</div>
-              <div class="body">
-                <div class="name-row"><b>Manoj</b><span>4 days ago</span></div>
-                <p class="text">Really useful — didn't know so much of this before reading.</p>
-                <span class="reply">Reply</span>
-              </div>
-            </div>
-            <div class="comment">
-              <div class="avatar">P</div>
-              <div class="body">
-                <div class="name-row"><b>Priya Nair</b><span>1 week ago</span></div>
-                <p class="text">Would love to see a follow-up article that goes deeper into this topic.</p>
-                <span class="reply">Reply</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="detail-share">
-        <img src="https://www.figma.com/api/mcp/asset/308d52f4-1cd5-4a38-8ee6-791d434dde7f" alt="Share on Facebook">
-        <img src="https://www.figma.com/api/mcp/asset/6ba8569c-d8bf-40c1-9fb7-98e23e6ddcb2" alt="Share on X">
-        <img src="https://www.figma.com/api/mcp/asset/27eaa1e0-3018-4563-8dc6-d4db12691ef0" alt="Copy link">
-      </div>
-    </div>
-
-    <h2 class="detail-section-heading">Related Products</h2>
-    <div class="related-products-row" id="relatedProducts"></div>
-
-    <h2 class="detail-section-heading">Related Blogs</h2>
-    <div class="related-blogs-row" id="relatedBlogs"></div>
-
-  </div>
-</div>
-
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="footer-top">
-    <div class="footer-left">
-      <p class="footer-title">Your journey to <b>holistic healing</b></p>
-
-      <div class="newsletter">
-        <p>Subscribe to our newsletter</p>
-        <div class="signup-row">
-          <div class="email-input"><span>Enter your email</span></div>
-          <div class="subscribe-btn">Subscribe</div>
-        </div>
-      </div>
-
-      <div class="footer-bottom-row">
-        <div class="social">
-          <b>Follow us</b>
-          <div class="social-icons">
-            <img src="https://www.figma.com/api/mcp/asset/308d52f4-1cd5-4a38-8ee6-791d434dde7f" alt="Facebook">
-            <img src="https://www.figma.com/api/mcp/asset/6ba8569c-d8bf-40c1-9fb7-98e23e6ddcb2" alt="X">
-            <img src="https://www.figma.com/api/mcp/asset/0dc94fba-36db-49c5-94de-05c2df00025c" alt="YouTube">
-          </div>
-        </div>
-        <p class="copyright">© 2025 Vedi Herbals. All rights reserved.</p>
-      </div>
-    </div>
-
-    <div class="nav-columns">
-      <div class="nav-col">
-        <b>Shop</b>
-        <span>Vedi Remedies</span>
-        <span>Vedi Essentials</span>
-        <span>Heal</span>
-        <span>Prevent</span>
-        <span>Restore</span>
-        <span>Enhance</span>
-      </div>
-      <div class="nav-col">
-        <b>About us</b>
-        <span>Our Story</span>
-        <span>Sustainability</span>
-        <span>Careers</span>
-        <span>Contact Us</span>
-      </div>
-      <div class="nav-col">
-        <b>Policies</b>
-        <span>Shipping</span>
-        <span>Returns</span>
-        <span>Privacy</span>
-      </div>
-      <div class="nav-col">
-        <b>Connect with us</b>
-        <span>Email: support@vediherbals.com</span>
-        <span>Phone: +1 (555) 123-4567</span>
-        <span>Mon - Fri, 9am - 6pm EST</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-divider"></div>
-</footer>
-
-<script>
-const blogPosts = {
-  "back-pain": {
-    title: "Chronic Back Pain in Ayurveda: Causes, Therapies &amp; Remedies",
-    category: "Condition &amp; Symptoms",
-    intent: "Prevent",
-    intentClass: "rose",
-    author: "Dr. K.M. Bhavana",
-    date: "March 24, 2025",
-    readTime: "8 min read",
-    image: "https://vediherbals.com/cdn/shop/articles/Healing_Chronic_Back_Pain_with_Ayurveda_A_Holistic_Approach_to_Wellness_b7066ec1-500a-4b3d-b18d-983d4c6b52c6.jpg?v=1742807896",
-    body: `
-      <p>Persistent back pain is one of the most common musculoskeletal complaints people deal with, often triggered by poor posture, long hours of sitting, injury, disc wear, or nerve-related issues. Ayurveda traces this kind of pain back to a disturbance in Vata, the bio-energy that governs movement and the nervous system. Two related conditions come up most often:</p>
-      <ul>
-        <li><b>Gridhrasi (similar to sciatica):</b> nerve pain that radiates from the lower back down through the leg.</li>
-        <li><b>Kati Gata Vata (lower back pain):</b> stiffness and pain concentrated in the lumbar region as Vata settles there.</li>
-      </ul>
-
-      <h2>Gridhrasi, or Sciatica, in Ayurvedic Terms</h2>
-      <p>The name comes from "Gridhra" (vulture), describing the limping gait some people develop. Ayurveda splits it into two types:</p>
-      <h3>Vata-Type Gridhrasi</h3>
-      <p>Caused by pure Vata aggravation — sharp, shooting pain, stiffness, tingling and dryness along the nerve path, without swelling.</p>
-      <h3>Vata-Kapha Gridhrasi</h3>
-      <p>Vata combined with Kapha imbalance adds heaviness, numbness and swelling to the picture. Treatment usually addresses the inflammation first, then works on pacifying Vata.</p>
-
-      <h2>What Causes Kati Gata Vata</h2>
-      <ul>
-        <li>Degenerative changes in the spine (disc wear, early osteoarthritis)</li>
-        <li>Poor posture and prolonged sitting</li>
-        <li>Heavy lifting or physical strain</li>
-        <li>Low calcium or vitamin D</li>
-        <li>Chronic stress and inactivity</li>
-      </ul>
-
-      <h2>Ayurvedic Treatment Approaches</h2>
-      <h3>Panchakarma Therapies</h3>
-      <ul>
-        <li><b>Abhyanga:</b> warm medicated oil massage (Mahanarayan, Dhanvantaram or Karpooradi oil) that loosens muscles and eases nerve compression.</li>
-        <li><b>Swedana:</b> herbal steam therapy that relieves stiffness and muscle spasm.</li>
-        <li><b>Kati Vasti:</b> a dough ring holds warm medicated oil over the lower back — especially useful for chronic lumbar pain and disc issues.</li>
-        <li><b>Vasti:</b> medicated enemas, considered the most effective Vata therapy, using either oil (Anuvasana) or herbal decoction (Kashaya).</li>
-      </ul>
-      <h3>Herbal Support</h3>
-      <p>Ashwagandha strengthens the nerves, Nirgundi and Shallaki reduce inflammation and joint pain, while Eranda and Rasna help ease chronic stiffness.</p>
-      <h3>Diet &amp; Daily Habits</h3>
-      <p>A warm, Vata-pacifying diet — ghee, sesame oil, warm soups, anti-inflammatory spices like turmeric and ginger, and calcium-rich foods — supports recovery, while cold, dry and processed foods are best avoided. Gentle daily movement (Cobra Pose, Cat-Cow, Wind-Relieving Pose), regular breaks from sitting, and a firm mattress round out the routine.</p>
-
-      <div class="quote-box">"Understanding whether back pain stems from pure Vata imbalance or involves inflammation is the key to choosing the right therapy."</div>
-
-      <h2>Conclusion</h2>
-      <p>Ayurveda approaches chronic back pain holistically rather than just chasing symptoms. A treatment plan personalised to your dosha and the specific nature of your pain — built with the guidance of a qualified Ayurvedic physician — tends to deliver the most lasting relief.</p>
-    `
-  },
-  "nasya-karma": {
-    title: "Nasya Karma: The Ayurvedic Nasal Therapy for Health &amp; Wellness",
-    category: "Ayurvedic Therapies",
-    intent: "Enhance",
-    intentClass: "yellow",
-    author: "Dr. K.M. Bhavana",
-    date: "March 24, 2025",
-    readTime: "7 min read",
-    image: "https://vediherbals.com/cdn/shop/articles/Breathe_Easy_Feel_Better_with_Nasya_Karma_Therapy_9dcd4242-8e4e-4773-b843-92f46a28bde6.jpg?v=1742809846",
-    body: `
-      <p>Among Ayurveda's five Panchakarma therapies, Nasya Karma — administering medicated oils or herbal extracts through the nose — stands out for how directly it works on the head and mind.</p>
-
-      <h2>What Nasya Karma Involves</h2>
-      <p>Because the nose is treated as a gateway to consciousness in Ayurveda, this therapy is used for conditions around the head, eyes, ears, nose and throat. It's said to cleanse the channels associated with the head (Shirovirechana Srotas) and helps balance Vata, Pitta and Kapha.</p>
-
-      <h2>How a Session Works</h2>
-      <h3>Preparation</h3>
-      <p>A gentle facial massage and mild steam open up the nasal passages before treatment begins.</p>
-      <h3>Administration</h3>
-      <p>Medicated oil, ghee or herbal drops are instilled into the nostrils while lying down, allowing the substance to be absorbed through the nasal lining.</p>
-      <h3>Aftercare</h3>
-      <p>Rest, gargling and a light diet afterward help the treatment take full effect.</p>
-
-      <h2>Types of Nasya</h2>
-      <ul>
-        <li><b>Virechana Nasya</b> — herbal powders used for cleansing</li>
-        <li><b>Bruhana Nasya</b> — nourishing medicated oils or ghee</li>
-        <li><b>Shamana Nasya</b> — calming, anti-inflammatory treatment</li>
-        <li><b>Navana Nasya</b> — oil therapy geared toward neurological conditions</li>
-        <li><b>Pratimarsha Nasya</b> — a light daily application for maintenance</li>
-      </ul>
-
-      <h2>Reported Benefits</h2>
-      <p>People use Nasya for sinus and allergy relief, sharper memory and focus, fewer headaches and migraines, a calmer nervous system, better sleep, and general respiratory support. It's commonly recommended for chronic sinusitis, nasal congestion, facial paralysis, stress, hair thinning and sleep disturbances.</p>
-
-      <h2>A Simple Daily Practice</h2>
-      <p>Pratimarsha Nasya — a couple of drops of a mild oil like Anu Taila each morning — is often recommended as a preventive habit against dryness, seasonal allergies and infections.</p>
-
-      <div class="quote-box">"In Ayurveda, the nose is considered a direct route to the brain — which is why Nasya is used for everything from sinus relief to mental clarity."</div>
-
-      <h2>Conclusion</h2>
-      <p>Whether you're dealing with chronic congestion or simply want a gentle daily ritual for the mind, Nasya Karma is worth discussing with a qualified Ayurvedic practitioner who can recommend the right oils and frequency for your constitution.</p>
-
-      <h3>FAQ</h3>
-      <p><b>How long does a session take?</b><br>Roughly 30–45 minutes, depending on the type of Nasya used.</p>
-      <p><b>What should I do afterward?</b><br>Rest, avoid cold air, sip warm water or herbal tea, and follow your practitioner's dietary guidance.</p>
-    `
-  },
-  "hemp-cultivation": {
-    title: "Hemp Cultivation in India: A Sustainable &amp; Legal Opportunity",
-    category: "Cannabis &amp; Vijaya",
-    intent: "Fundamentals",
-    intentClass: "",
-    author: "Dr. K.M. Bhavana",
-    date: "March 24, 2025",
-    readTime: "9 min read",
-    image: "https://vediherbals.com/cdn/shop/articles/Hemp_Cultivation_in_India_8a402888-f1ff-4b87-9b17-3b3225d87b0c.jpg?v=1742797551",
-    body: `
-      <p>Interest in hemp farming is picking up again in India, thanks to the crop's versatility and lighter environmental footprint. Here's where it stands legally, how it's grown, and what it offers.</p>
-
-      <h2>What Hemp Is Called in India</h2>
-      <p>Hemp is broadly referred to as "Bhaang," though that word actually covers both psychoactive and non-psychoactive cannabis varieties. Industrial hemp — grown for fiber, seed and oil — is a distinct, low-THC category, separate from marijuana. Regional names include Bhaang (Hindi, Marathi, Gujarati, Odia), Bhang/Ganja (Bengali), Chanal (Tamil), Sennabu/Ganja/Bangi (Kannada), and Bhaang/Vijaya (Punjabi).</p>
-
-      <h2>Cannabis, Weed, Hemp and Hash — What's the Difference</h2>
-      <ul>
-        <li><b>Cannabis:</b> the plant itself, with Sativa and Indica varieties.</li>
-        <li><b>Hemp:</b> a low-THC cannabis variety grown industrially for fiber, textiles and construction.</li>
-        <li><b>Weed/Marijuana:</b> high-THC flowers and leaves used recreationally or medicinally.</li>
-        <li><b>Hash:</b> a concentrated resin product, more potent than regular marijuana.</li>
-      </ul>
-
-      <h2>Is Hemp Legal in India?</h2>
-      <p>Yes. Under the Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985, industrial hemp is permitted as long as its THC content stays below 0.3%.</p>
-
-      <h2>What About Hemp Oil?</h2>
-      <p>Also legal, provided its THC stays within the same limit. It's widely used in skincare and as a dietary supplement thanks to its fatty-acid and nutrient profile.</p>
-
-      <h2>Where Can It Be Grown?</h2>
-      <p>Cultivation is currently permitted in select states — Uttarakhand, Uttar Pradesh, Madhya Pradesh and Himachal Pradesh — useful in regions where cotton or rice aren't viable, since hemp needs comparatively little water or pesticide.</p>
-
-      <h2>Getting a License</h2>
-      <ul>
-        <li>Research state-specific regulations</li>
-        <li>Register with the relevant Excise or Agriculture Department</li>
-        <li>Submit an application with the required documentation</li>
-        <li>Pass a land inspection for compliance</li>
-        <li>Stay compliant through ongoing THC monitoring</li>
-      </ul>
-
-      <h2>Why Hemp Is a Sustainable Crop</h2>
-      <p>Hemp conserves water compared to cotton, naturally resists pests (cutting down on chemical use), and helps prevent soil erosion while improving soil health for future crops.</p>
-
-      <h2>The Economic Case</h2>
-      <p>Rising demand for hemp fiber, seed and oil across textiles, construction and wellness gives rural farmers a genuine income opportunity, with export potential growing alongside awareness.</p>
-
-      <h2>What Hemp Is Used For</h2>
-      <ul>
-        <li><b>Fiber:</b> textiles, rope, eco-friendly paper</li>
-        <li><b>Seeds:</b> superfood, protein powder, hemp oil</li>
-        <li><b>Oil:</b> skincare, wellness products, cooking</li>
-        <li><b>Building materials:</b> hemp-based concrete, insulation, bioplastics</li>
-      </ul>
-
-      <div class="quote-box">"As the legal landscape evolves, hemp could become one of India's most valuable, low-impact cash crops."</div>
-
-      <h2>Conclusion</h2>
-      <p>With rising global demand for sustainable materials, hemp gives India a real opportunity to build a greener agricultural and industrial sector — provided the regulatory and licensing process keeps pace with that demand.</p>
-
-      <h3>FAQ</h3>
-      <p><b>How is hemp different from marijuana?</b><br>Same plant family, but hemp is bred for industrial use and stays under 0.3% THC, while marijuana is grown for its psychoactive effect.</p>
-      <p><b>Is hemp legal in India?</b><br>Yes, within the THC limits set by the NDPS Act, and only in states that currently permit cultivation.</p>
-      <p><b>Is hemp oil legal?</b><br>Yes, as long as it meets the same THC threshold.</p>
-    `
-  }
-};
-
-const relatedProductsData = [
-  { name: "Cannapain®", desc: "Alleviates Pain | Improves Sleep", img: "https://vediherbals.com/cdn/shop/files/Buy-Cannapain-Alleviates-Pain-and-Improves-Sleep.jpg?v=1718599843" },
-  { name: "Cannapain® Oil", desc: "Alleviates Pain | Improves Sleep", img: "https://vediherbals.com/cdn/shop/files/Buy-Cannapain-Oil-Alleviates-Pain-and-Improves-Sleep.jpg?v=1718599637" },
-  { name: "Cannapain+®", desc: "Anxiety Relief | Appetite Enhancement", img: "https://vediherbals.com/cdn/shop/files/Order-Cannapain-plus-Anxiety-Relief-and-Appetite-Enhancement.jpg?v=1718600206" }
-];
-
-function initials(name){
-  return name.replace('Dr. ','').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
-}
-
-function showBlog(id){
-  const post = blogPosts[id];
-  if(!post) return;
-
-  document.getElementById('detailBadges').innerHTML =
-    `<span class="badge small cat-badge">${post.category}</span>
-     <span class="badge small intent-badge ${post.intentClass}">${post.intent}</span>`;
-  document.getElementById('detailTitle').innerHTML = post.title;
-  document.getElementById('detailAvatar').textContent = initials(post.author);
-  document.getElementById('detailAuthor').textContent = post.author;
-  document.getElementById('detailDate').textContent = post.date;
-  document.getElementById('detailReadTime').textContent = post.readTime;
-  document.getElementById('detailImage').src = post.image;
-  document.getElementById('detailBody').innerHTML = post.body;
-
-  // Related products
-  document.getElementById('relatedProducts').innerHTML = relatedProductsData.map(p => `
-    <div class="product-card-mini">
-      <img src="${p.img}" alt="${p.name}">
-      <b>${p.name}</b>
-      <span>${p.desc}</span>
-      <div class="product-shop-btn">Shop Now</div>
-    </div>
-  `).join('');
-
-  // Related blogs = the other posts
-  const others = Object.keys(blogPosts).filter(k => k !== id);
-  document.getElementById('relatedBlogs').innerHTML = others.map(k => {
-    const p = blogPosts[k];
-    return `
-      <div class="related-blog-card" onclick="showBlog('${k}')">
-        <img src="${p.image}" alt="${p.title}">
-        <h4>${p.title}</h4>
-        <span>${p.date}</span>
-      </div>
-    `;
-  }).join('');
-
-  document.getElementById('listingPage').style.display = 'none';
-  document.getElementById('detailPage').style.display = 'block';
-  window.scrollTo(0,0);
-}
-
-function showListing(){
-  document.getElementById('detailPage').style.display = 'none';
-  document.getElementById('listingPage').style.display = 'block';
-  window.scrollTo(0,0);
-}
-</script>
-
+        function syncScroll(scrolledPanel) {
+            if (scrolledPanel === 'left') {
+                if (isSyncingRight) {
+                    isSyncingRight = false;
+                    return;
+                }
+                isSyncingLeft = true;
+                
+                // Keep the right scroll matching the left scroll percentage
+                const leftPct = panelLeft.scrollTop / (panelLeft.scrollHeight - panelLeft.clientHeight);
+                panelRight.scrollTop = leftPct * (panelRight.scrollHeight - panelRight.clientHeight);
+            } else if (scrolledPanel === 'right') {
+                if (isSyncingLeft) {
+                    isSyncingLeft = false;
+                    return;
+                }
+                isSyncingRight = true;
+                
+                // Keep the left scroll matching the right scroll percentage
+                const rightPct = panelRight.scrollTop / (panelRight.scrollHeight - panelRight.clientHeight);
+                panelLeft.scrollTop = rightPct * (panelLeft.scrollHeight - panelLeft.clientHeight);
+            }
+        }
+    </script>
 </body>
 </html>
