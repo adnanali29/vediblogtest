@@ -374,6 +374,12 @@
     display:flex;
     flex-direction:column;
     gap:12px;
+    cursor:pointer;
+    transition:box-shadow .2s ease, transform .2s ease;
+  }
+  .blog-card:hover{
+    box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    transform:translateY(-2px);
   }
   .blog-card .image{
     width:100%;
@@ -545,6 +551,278 @@
     width:100%;
   }
 
+  /* ============ BLOG DETAIL PAGE ============ */
+  .detail-container{
+    max-width:900px;
+    margin:0 auto;
+    padding:32px 20px 60px;
+  }
+  .breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--font-tertiary);
+    cursor:pointer;
+    margin-bottom:24px;
+    width:fit-content;
+  }
+  .breadcrumb:hover{ color:var(--font-primary); }
+  .breadcrumb img{width:14px;height:14px;}
+
+  .detail-main{
+    display:flex;
+    gap:24px;
+    align-items:flex-start;
+  }
+  .detail-article{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .detail-title{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:38px;
+    line-height:1.15;
+    letter-spacing:-0.3px;
+    color:var(--font-primary);
+  }
+  .detail-meta{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .author-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--accent-green-400);
+    color:#fff;
+    font-family:var(--heading-font);
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .author-info{ display:flex; flex-direction:column; gap:2px; }
+  .author-name{ font-size:14px; font-weight:700; color:var(--font-primary); }
+  .meta-sub{ display:flex; gap:8px; font-size:12px; color:var(--font-tertiary); }
+
+  .detail-hero-image{
+    width:100%;
+    max-height:420px;
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .detail-hero-image img{ width:100%; height:100%; object-fit:cover; max-height:420px; }
+
+  .detail-body{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    font-size:15px;
+    line-height:26px;
+    color:var(--font-secondary);
+  }
+  .detail-body h2{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:24px;
+    color:var(--font-primary);
+    margin-top:12px;
+  }
+  .detail-body h3{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:19px;
+    color:var(--font-primary);
+    margin-top:4px;
+  }
+  .detail-body ul{ margin:0; padding-left:22px; display:flex; flex-direction:column; gap:6px; }
+  .detail-body p{ margin:0; }
+  .quote-box{
+    background:var(--accent-olive-50);
+    border-left:4px solid var(--accent-green-400);
+    border-radius:8px;
+    padding:18px 20px;
+    font-style:italic;
+    font-size:15px;
+    color:var(--font-primary);
+  }
+
+  .detail-share{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    position:sticky;
+    top:100px;
+  }
+  .detail-share img{
+    width:36px;
+    height:36px;
+    padding:8px;
+    border:1px solid var(--border-color);
+    border-radius:50%;
+    cursor:pointer;
+  }
+  .detail-share img:hover{ background:var(--neutral-snow-light); }
+
+  .comments-section{
+    margin-top:16px;
+    border-top:1px solid var(--border-color);
+    padding-top:24px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .comments-section h3{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:22px;
+  }
+  .comment-form{
+    display:flex;
+    gap:10px;
+  }
+  .comment-form input{
+    flex:1;
+    border:1px solid var(--border-color);
+    border-radius:100px;
+    padding:10px 18px;
+    font-size:14px;
+    font-family:var(--body-font);
+  }
+  .comment-form button{
+    background:var(--accent-green-400);
+    color:#fff;
+    border:none;
+    border-radius:100px;
+    padding:10px 22px;
+    font-size:14px;
+    font-weight:500;
+    cursor:pointer;
+    font-family:var(--body-font);
+  }
+  .comment-list{ display:flex; flex-direction:column; gap:16px; }
+  .comment{ display:flex; gap:12px; }
+  .comment .avatar{
+    width:32px;height:32px;border-radius:50%;
+    background:var(--accent-teal-400);
+    color:#fff;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-family:var(--heading-font);
+  }
+  .comment .body{ display:flex; flex-direction:column; gap:4px; }
+  .comment .name-row{ display:flex; gap:8px; align-items:center; font-size:13px; }
+  .comment .name-row b{ font-size:14px; }
+  .comment .name-row span{ color:var(--font-tertiary); font-size:12px; }
+  .comment .text{ font-size:14px; color:var(--font-secondary); line-height:20px; }
+  .comment .reply{ font-size:12px; color:var(--font-tertiary); cursor:pointer; width:fit-content; }
+
+  .cta-box{
+    margin-top:40px;
+    background:var(--neutral-snow-light);
+    border-radius:16px;
+    padding:24px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .cta-box .avatar-lg{
+    width:56px;height:56px;border-radius:50%;
+    background:var(--accent-teal-400);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--heading-font);font-size:22px;flex-shrink:0;
+  }
+  .cta-box p{ font-size:15px; color:var(--font-primary); flex:1; min-width:220px; }
+  .cta-btn{
+    background:var(--accent-green-400);
+    color:#fff;
+    border-radius:100px;
+    padding:12px 24px;
+    font-size:14px;
+    font-weight:500;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+
+  .detail-section-heading{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:26px;
+    margin:48px 0 20px;
+  }
+  .related-products-row{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    padding-bottom:8px;
+  }
+  .product-card-mini{
+    flex:0 0 200px;
+    border:1px solid var(--border-color);
+    border-radius:12px;
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .product-card-mini img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:8px;
+  }
+  .product-card-mini b{ font-family:var(--heading-font); font-size:16px; font-weight:600; }
+  .product-card-mini span{ font-size:12px; color:var(--font-tertiary); }
+  .product-shop-btn{
+    background:var(--accent-green-400);
+    color:#fff;
+    text-align:center;
+    border-radius:100px;
+    padding:8px;
+    font-size:13px;
+    font-weight:500;
+    margin-top:4px;
+  }
+
+  .related-blogs-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .related-blog-card{
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .related-blog-card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:12px;
+  }
+  .related-blog-card h4{
+    font-family:var(--heading-font);
+    font-weight:600;
+    font-size:16px;
+  }
+  .related-blog-card span{ font-size:12px; color:var(--font-tertiary); }
+
+  @media (max-width:800px){
+    .detail-main{ flex-direction:column-reverse; }
+    .detail-share{ flex-direction:row; position:static; }
+    .detail-title{ font-size:28px; }
+    .related-blogs-row{ grid-template-columns:1fr; }
+  }
+
   @media (max-width: 1100px){
     .card-grid{grid-template-columns:repeat(2,1fr);}
     .nav-links{display:none;}
@@ -595,7 +873,7 @@
   </div>
 </header>
 
-<div class="wrap">
+<div class="wrap" id="listingPage">
 
   <!-- ============ HERO HEADER ============ -->
   <section class="hero-header" style="background-image:url('https://www.figma.com/api/mcp/asset/9713d238-c496-459b-b5ce-bd3e57254bb8');">
@@ -710,37 +988,37 @@
   <!-- ============ CARD GRID ============ -->
   <section class="card-grid">
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/398ddf7d-2724-42e7-9214-7b877ec30523" alt=""></div>
+    <article class="blog-card" onclick="showBlog('back-pain')">
+      <div class="image"><img src="https://vediherbals.com/cdn/shop/articles/Healing_Chronic_Back_Pain_with_Ayurveda_A_Holistic_Approach_to_Wellness_b7066ec1-500a-4b3d-b18d-983d4c6b52c6.jpg?v=1742807896" alt="Chronic Back Pain in Ayurveda"></div>
       <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-        <span class="badge small intent-badge teal">Restore</span>
-      </div>
-      <h3 class="heading-6">Panchakarma therapy: detox, rejuvenate, restore balance</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
-    </article>
-
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/7697349d-a688-452a-b748-4bd85807a843" alt=""></div>
-      <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
+        <span class="badge small cat-badge">Condition &amp; Symptoms</span>
         <span class="badge small intent-badge rose">Prevent</span>
       </div>
-      <h3 class="heading-6">Ancient healing rituals to cleanse your body and calm your mind</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
+      <h3 class="heading-6">Chronic Back Pain in Ayurveda: Causes, Therapies &amp; Remedies</h3>
+      <p class="body-3">Persistent back pain is one of the most common musculoskeletal complaints today. Ayurveda traces it to a Vata imbalance, and treats it through Gridhrasi and Kati Gata Vata protocols using Panchakarma, herbs and lifestyle changes.</p>
+      <span class="date">Mar 24, 2025</span>
     </article>
 
-    <article class="blog-card">
-      <div class="image"><img src="https://www.figma.com/api/mcp/asset/58f26d15-b6a2-4a17-8670-abccfb49912a" alt=""></div>
+    <article class="blog-card" onclick="showBlog('nasya-karma')">
+      <div class="image"><img src="https://vediherbals.com/cdn/shop/articles/Breathe_Easy_Feel_Better_with_Nasya_Karma_Therapy_9dcd4242-8e4e-4773-b843-92f46a28bde6.jpg?v=1742809846" alt="Nasya Karma Therapy"></div>
       <div class="badge-row">
-        <span class="badge small cat-badge">Herbs &amp; Ingredients</span>
-        <span class="badge small intent-badge">Heal</span>
+        <span class="badge small cat-badge">Ayurvedic Therapies</span>
+        <span class="badge small intent-badge yellow">Enhance</span>
       </div>
-      <h3 class="heading-6">Ayurvedic renewal: purify deeply, heal fully, live freely</h3>
-      <p class="body-3">In India, cannabis is more than just a plant—it is a symbol, a medicine, and a topic of legal debate. Known traditionally as Vijaya, cannabis has been mentioned in Ayurvedic texts as a powerful herb with diverse applications. However,</p>
-      <span class="date">Dec 10, 2024</span>
+      <h3 class="heading-6">Nasya Karma: The Ayurvedic Nasal Therapy for Health &amp; Wellness</h3>
+      <p class="body-3">Nasya Karma, one of Ayurveda's five Panchakarma therapies, uses medicated oils administered through the nose to clear the sinuses, calm the mind and support long-term wellness.</p>
+      <span class="date">Mar 24, 2025</span>
+    </article>
+
+    <article class="blog-card" onclick="showBlog('hemp-cultivation')">
+      <div class="image"><img src="https://vediherbals.com/cdn/shop/articles/Hemp_Cultivation_in_India_8a402888-f1ff-4b87-9b17-3b3225d87b0c.jpg?v=1742797551" alt="Hemp Cultivation in India"></div>
+      <div class="badge-row">
+        <span class="badge small cat-badge">Cannabis &amp; Vijaya</span>
+        <span class="badge small intent-badge">Fundamentals</span>
+      </div>
+      <h3 class="heading-6">Hemp Cultivation in India: A Sustainable &amp; Legal Opportunity</h3>
+      <p class="body-3">Hemp farming is gaining ground in India thanks to its low environmental footprint and wide industrial use. Here's where it stands legally, how it's grown, and the opportunity it offers farmers.</p>
+      <span class="date">Mar 24, 2025</span>
     </article>
 
     <article class="blog-card">
@@ -828,6 +1106,93 @@
 
 </div>
 
+<!-- ============ BLOG DETAIL PAGE (hidden by default) ============ -->
+<div class="wrap" id="detailPage" style="display:none;">
+  <div class="detail-container">
+
+    <div class="breadcrumb" onclick="showListing()">
+      <img src="https://www.figma.com/api/mcp/asset/59aa2285-2ebd-4bd8-b993-40ac855cbbd4" alt="">
+      Back to Blog
+    </div>
+
+    <div class="detail-main">
+      <div class="detail-article">
+        <div class="badge-row" id="detailBadges"></div>
+        <h1 class="detail-title" id="detailTitle"></h1>
+
+        <div class="detail-meta">
+          <div class="author-avatar" id="detailAvatar"></div>
+          <div class="author-info">
+            <span class="author-name" id="detailAuthor"></span>
+            <div class="meta-sub">
+              <span id="detailDate"></span>
+              <span>•</span>
+              <span id="detailReadTime"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-hero-image"><img id="detailImage" src="" alt=""></div>
+
+        <div class="detail-body" id="detailBody"></div>
+
+        <div class="cta-box">
+          <div class="avatar-lg">Dr</div>
+          <p>Get expert medical advice from top Ayurvedic doctors, anytime, anywhere.</p>
+          <div class="cta-btn">Book Doctor Consultation</div>
+        </div>
+
+        <div class="comments-section">
+          <h3>Comments</h3>
+          <div class="comment-form">
+            <input type="text" placeholder="Share your thoughts...">
+            <button>Post</button>
+          </div>
+          <div class="comment-list">
+            <div class="comment">
+              <div class="avatar">A</div>
+              <div class="body">
+                <div class="name-row"><b>Aditi</b><span>2 days ago</span></div>
+                <p class="text">This is such a practical breakdown, thank you for explaining the difference so clearly.</p>
+                <span class="reply">Reply</span>
+              </div>
+            </div>
+            <div class="comment">
+              <div class="avatar">M</div>
+              <div class="body">
+                <div class="name-row"><b>Manoj</b><span>4 days ago</span></div>
+                <p class="text">Really useful — didn't know so much of this before reading.</p>
+                <span class="reply">Reply</span>
+              </div>
+            </div>
+            <div class="comment">
+              <div class="avatar">P</div>
+              <div class="body">
+                <div class="name-row"><b>Priya Nair</b><span>1 week ago</span></div>
+                <p class="text">Would love to see a follow-up article that goes deeper into this topic.</p>
+                <span class="reply">Reply</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-share">
+        <img src="https://www.figma.com/api/mcp/asset/308d52f4-1cd5-4a38-8ee6-791d434dde7f" alt="Share on Facebook">
+        <img src="https://www.figma.com/api/mcp/asset/6ba8569c-d8bf-40c1-9fb7-98e23e6ddcb2" alt="Share on X">
+        <img src="https://www.figma.com/api/mcp/asset/27eaa1e0-3018-4563-8dc6-d4db12691ef0" alt="Copy link">
+      </div>
+    </div>
+
+    <h2 class="detail-section-heading">Related Products</h2>
+    <div class="related-products-row" id="relatedProducts"></div>
+
+    <h2 class="detail-section-heading">Related Blogs</h2>
+    <div class="related-blogs-row" id="relatedBlogs"></div>
+
+  </div>
+</div>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-top">
@@ -889,6 +1254,235 @@
 
   <div class="footer-divider"></div>
 </footer>
+
+<script>
+const blogPosts = {
+  "back-pain": {
+    title: "Chronic Back Pain in Ayurveda: Causes, Therapies &amp; Remedies",
+    category: "Condition &amp; Symptoms",
+    intent: "Prevent",
+    intentClass: "rose",
+    author: "Dr. K.M. Bhavana",
+    date: "March 24, 2025",
+    readTime: "8 min read",
+    image: "https://vediherbals.com/cdn/shop/articles/Healing_Chronic_Back_Pain_with_Ayurveda_A_Holistic_Approach_to_Wellness_b7066ec1-500a-4b3d-b18d-983d4c6b52c6.jpg?v=1742807896",
+    body: `
+      <p>Persistent back pain is one of the most common musculoskeletal complaints people deal with, often triggered by poor posture, long hours of sitting, injury, disc wear, or nerve-related issues. Ayurveda traces this kind of pain back to a disturbance in Vata, the bio-energy that governs movement and the nervous system. Two related conditions come up most often:</p>
+      <ul>
+        <li><b>Gridhrasi (similar to sciatica):</b> nerve pain that radiates from the lower back down through the leg.</li>
+        <li><b>Kati Gata Vata (lower back pain):</b> stiffness and pain concentrated in the lumbar region as Vata settles there.</li>
+      </ul>
+
+      <h2>Gridhrasi, or Sciatica, in Ayurvedic Terms</h2>
+      <p>The name comes from "Gridhra" (vulture), describing the limping gait some people develop. Ayurveda splits it into two types:</p>
+      <h3>Vata-Type Gridhrasi</h3>
+      <p>Caused by pure Vata aggravation — sharp, shooting pain, stiffness, tingling and dryness along the nerve path, without swelling.</p>
+      <h3>Vata-Kapha Gridhrasi</h3>
+      <p>Vata combined with Kapha imbalance adds heaviness, numbness and swelling to the picture. Treatment usually addresses the inflammation first, then works on pacifying Vata.</p>
+
+      <h2>What Causes Kati Gata Vata</h2>
+      <ul>
+        <li>Degenerative changes in the spine (disc wear, early osteoarthritis)</li>
+        <li>Poor posture and prolonged sitting</li>
+        <li>Heavy lifting or physical strain</li>
+        <li>Low calcium or vitamin D</li>
+        <li>Chronic stress and inactivity</li>
+      </ul>
+
+      <h2>Ayurvedic Treatment Approaches</h2>
+      <h3>Panchakarma Therapies</h3>
+      <ul>
+        <li><b>Abhyanga:</b> warm medicated oil massage (Mahanarayan, Dhanvantaram or Karpooradi oil) that loosens muscles and eases nerve compression.</li>
+        <li><b>Swedana:</b> herbal steam therapy that relieves stiffness and muscle spasm.</li>
+        <li><b>Kati Vasti:</b> a dough ring holds warm medicated oil over the lower back — especially useful for chronic lumbar pain and disc issues.</li>
+        <li><b>Vasti:</b> medicated enemas, considered the most effective Vata therapy, using either oil (Anuvasana) or herbal decoction (Kashaya).</li>
+      </ul>
+      <h3>Herbal Support</h3>
+      <p>Ashwagandha strengthens the nerves, Nirgundi and Shallaki reduce inflammation and joint pain, while Eranda and Rasna help ease chronic stiffness.</p>
+      <h3>Diet &amp; Daily Habits</h3>
+      <p>A warm, Vata-pacifying diet — ghee, sesame oil, warm soups, anti-inflammatory spices like turmeric and ginger, and calcium-rich foods — supports recovery, while cold, dry and processed foods are best avoided. Gentle daily movement (Cobra Pose, Cat-Cow, Wind-Relieving Pose), regular breaks from sitting, and a firm mattress round out the routine.</p>
+
+      <div class="quote-box">"Understanding whether back pain stems from pure Vata imbalance or involves inflammation is the key to choosing the right therapy."</div>
+
+      <h2>Conclusion</h2>
+      <p>Ayurveda approaches chronic back pain holistically rather than just chasing symptoms. A treatment plan personalised to your dosha and the specific nature of your pain — built with the guidance of a qualified Ayurvedic physician — tends to deliver the most lasting relief.</p>
+    `
+  },
+  "nasya-karma": {
+    title: "Nasya Karma: The Ayurvedic Nasal Therapy for Health &amp; Wellness",
+    category: "Ayurvedic Therapies",
+    intent: "Enhance",
+    intentClass: "yellow",
+    author: "Dr. K.M. Bhavana",
+    date: "March 24, 2025",
+    readTime: "7 min read",
+    image: "https://vediherbals.com/cdn/shop/articles/Breathe_Easy_Feel_Better_with_Nasya_Karma_Therapy_9dcd4242-8e4e-4773-b843-92f46a28bde6.jpg?v=1742809846",
+    body: `
+      <p>Among Ayurveda's five Panchakarma therapies, Nasya Karma — administering medicated oils or herbal extracts through the nose — stands out for how directly it works on the head and mind.</p>
+
+      <h2>What Nasya Karma Involves</h2>
+      <p>Because the nose is treated as a gateway to consciousness in Ayurveda, this therapy is used for conditions around the head, eyes, ears, nose and throat. It's said to cleanse the channels associated with the head (Shirovirechana Srotas) and helps balance Vata, Pitta and Kapha.</p>
+
+      <h2>How a Session Works</h2>
+      <h3>Preparation</h3>
+      <p>A gentle facial massage and mild steam open up the nasal passages before treatment begins.</p>
+      <h3>Administration</h3>
+      <p>Medicated oil, ghee or herbal drops are instilled into the nostrils while lying down, allowing the substance to be absorbed through the nasal lining.</p>
+      <h3>Aftercare</h3>
+      <p>Rest, gargling and a light diet afterward help the treatment take full effect.</p>
+
+      <h2>Types of Nasya</h2>
+      <ul>
+        <li><b>Virechana Nasya</b> — herbal powders used for cleansing</li>
+        <li><b>Bruhana Nasya</b> — nourishing medicated oils or ghee</li>
+        <li><b>Shamana Nasya</b> — calming, anti-inflammatory treatment</li>
+        <li><b>Navana Nasya</b> — oil therapy geared toward neurological conditions</li>
+        <li><b>Pratimarsha Nasya</b> — a light daily application for maintenance</li>
+      </ul>
+
+      <h2>Reported Benefits</h2>
+      <p>People use Nasya for sinus and allergy relief, sharper memory and focus, fewer headaches and migraines, a calmer nervous system, better sleep, and general respiratory support. It's commonly recommended for chronic sinusitis, nasal congestion, facial paralysis, stress, hair thinning and sleep disturbances.</p>
+
+      <h2>A Simple Daily Practice</h2>
+      <p>Pratimarsha Nasya — a couple of drops of a mild oil like Anu Taila each morning — is often recommended as a preventive habit against dryness, seasonal allergies and infections.</p>
+
+      <div class="quote-box">"In Ayurveda, the nose is considered a direct route to the brain — which is why Nasya is used for everything from sinus relief to mental clarity."</div>
+
+      <h2>Conclusion</h2>
+      <p>Whether you're dealing with chronic congestion or simply want a gentle daily ritual for the mind, Nasya Karma is worth discussing with a qualified Ayurvedic practitioner who can recommend the right oils and frequency for your constitution.</p>
+
+      <h3>FAQ</h3>
+      <p><b>How long does a session take?</b><br>Roughly 30–45 minutes, depending on the type of Nasya used.</p>
+      <p><b>What should I do afterward?</b><br>Rest, avoid cold air, sip warm water or herbal tea, and follow your practitioner's dietary guidance.</p>
+    `
+  },
+  "hemp-cultivation": {
+    title: "Hemp Cultivation in India: A Sustainable &amp; Legal Opportunity",
+    category: "Cannabis &amp; Vijaya",
+    intent: "Fundamentals",
+    intentClass: "",
+    author: "Dr. K.M. Bhavana",
+    date: "March 24, 2025",
+    readTime: "9 min read",
+    image: "https://vediherbals.com/cdn/shop/articles/Hemp_Cultivation_in_India_8a402888-f1ff-4b87-9b17-3b3225d87b0c.jpg?v=1742797551",
+    body: `
+      <p>Interest in hemp farming is picking up again in India, thanks to the crop's versatility and lighter environmental footprint. Here's where it stands legally, how it's grown, and what it offers.</p>
+
+      <h2>What Hemp Is Called in India</h2>
+      <p>Hemp is broadly referred to as "Bhaang," though that word actually covers both psychoactive and non-psychoactive cannabis varieties. Industrial hemp — grown for fiber, seed and oil — is a distinct, low-THC category, separate from marijuana. Regional names include Bhaang (Hindi, Marathi, Gujarati, Odia), Bhang/Ganja (Bengali), Chanal (Tamil), Sennabu/Ganja/Bangi (Kannada), and Bhaang/Vijaya (Punjabi).</p>
+
+      <h2>Cannabis, Weed, Hemp and Hash — What's the Difference</h2>
+      <ul>
+        <li><b>Cannabis:</b> the plant itself, with Sativa and Indica varieties.</li>
+        <li><b>Hemp:</b> a low-THC cannabis variety grown industrially for fiber, textiles and construction.</li>
+        <li><b>Weed/Marijuana:</b> high-THC flowers and leaves used recreationally or medicinally.</li>
+        <li><b>Hash:</b> a concentrated resin product, more potent than regular marijuana.</li>
+      </ul>
+
+      <h2>Is Hemp Legal in India?</h2>
+      <p>Yes. Under the Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985, industrial hemp is permitted as long as its THC content stays below 0.3%.</p>
+
+      <h2>What About Hemp Oil?</h2>
+      <p>Also legal, provided its THC stays within the same limit. It's widely used in skincare and as a dietary supplement thanks to its fatty-acid and nutrient profile.</p>
+
+      <h2>Where Can It Be Grown?</h2>
+      <p>Cultivation is currently permitted in select states — Uttarakhand, Uttar Pradesh, Madhya Pradesh and Himachal Pradesh — useful in regions where cotton or rice aren't viable, since hemp needs comparatively little water or pesticide.</p>
+
+      <h2>Getting a License</h2>
+      <ul>
+        <li>Research state-specific regulations</li>
+        <li>Register with the relevant Excise or Agriculture Department</li>
+        <li>Submit an application with the required documentation</li>
+        <li>Pass a land inspection for compliance</li>
+        <li>Stay compliant through ongoing THC monitoring</li>
+      </ul>
+
+      <h2>Why Hemp Is a Sustainable Crop</h2>
+      <p>Hemp conserves water compared to cotton, naturally resists pests (cutting down on chemical use), and helps prevent soil erosion while improving soil health for future crops.</p>
+
+      <h2>The Economic Case</h2>
+      <p>Rising demand for hemp fiber, seed and oil across textiles, construction and wellness gives rural farmers a genuine income opportunity, with export potential growing alongside awareness.</p>
+
+      <h2>What Hemp Is Used For</h2>
+      <ul>
+        <li><b>Fiber:</b> textiles, rope, eco-friendly paper</li>
+        <li><b>Seeds:</b> superfood, protein powder, hemp oil</li>
+        <li><b>Oil:</b> skincare, wellness products, cooking</li>
+        <li><b>Building materials:</b> hemp-based concrete, insulation, bioplastics</li>
+      </ul>
+
+      <div class="quote-box">"As the legal landscape evolves, hemp could become one of India's most valuable, low-impact cash crops."</div>
+
+      <h2>Conclusion</h2>
+      <p>With rising global demand for sustainable materials, hemp gives India a real opportunity to build a greener agricultural and industrial sector — provided the regulatory and licensing process keeps pace with that demand.</p>
+
+      <h3>FAQ</h3>
+      <p><b>How is hemp different from marijuana?</b><br>Same plant family, but hemp is bred for industrial use and stays under 0.3% THC, while marijuana is grown for its psychoactive effect.</p>
+      <p><b>Is hemp legal in India?</b><br>Yes, within the THC limits set by the NDPS Act, and only in states that currently permit cultivation.</p>
+      <p><b>Is hemp oil legal?</b><br>Yes, as long as it meets the same THC threshold.</p>
+    `
+  }
+};
+
+const relatedProductsData = [
+  { name: "Cannapain®", desc: "Alleviates Pain | Improves Sleep", img: "https://vediherbals.com/cdn/shop/files/Buy-Cannapain-Alleviates-Pain-and-Improves-Sleep.jpg?v=1718599843" },
+  { name: "Cannapain® Oil", desc: "Alleviates Pain | Improves Sleep", img: "https://vediherbals.com/cdn/shop/files/Buy-Cannapain-Oil-Alleviates-Pain-and-Improves-Sleep.jpg?v=1718599637" },
+  { name: "Cannapain+®", desc: "Anxiety Relief | Appetite Enhancement", img: "https://vediherbals.com/cdn/shop/files/Order-Cannapain-plus-Anxiety-Relief-and-Appetite-Enhancement.jpg?v=1718600206" }
+];
+
+function initials(name){
+  return name.replace('Dr. ','').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+}
+
+function showBlog(id){
+  const post = blogPosts[id];
+  if(!post) return;
+
+  document.getElementById('detailBadges').innerHTML =
+    `<span class="badge small cat-badge">${post.category}</span>
+     <span class="badge small intent-badge ${post.intentClass}">${post.intent}</span>`;
+  document.getElementById('detailTitle').innerHTML = post.title;
+  document.getElementById('detailAvatar').textContent = initials(post.author);
+  document.getElementById('detailAuthor').textContent = post.author;
+  document.getElementById('detailDate').textContent = post.date;
+  document.getElementById('detailReadTime').textContent = post.readTime;
+  document.getElementById('detailImage').src = post.image;
+  document.getElementById('detailBody').innerHTML = post.body;
+
+  // Related products
+  document.getElementById('relatedProducts').innerHTML = relatedProductsData.map(p => `
+    <div class="product-card-mini">
+      <img src="${p.img}" alt="${p.name}">
+      <b>${p.name}</b>
+      <span>${p.desc}</span>
+      <div class="product-shop-btn">Shop Now</div>
+    </div>
+  `).join('');
+
+  // Related blogs = the other posts
+  const others = Object.keys(blogPosts).filter(k => k !== id);
+  document.getElementById('relatedBlogs').innerHTML = others.map(k => {
+    const p = blogPosts[k];
+    return `
+      <div class="related-blog-card" onclick="showBlog('${k}')">
+        <img src="${p.image}" alt="${p.title}">
+        <h4>${p.title}</h4>
+        <span>${p.date}</span>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('listingPage').style.display = 'none';
+  document.getElementById('detailPage').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+function showListing(){
+  document.getElementById('detailPage').style.display = 'none';
+  document.getElementById('listingPage').style.display = 'block';
+  window.scrollTo(0,0);
+}
+</script>
 
 </body>
 </html>
